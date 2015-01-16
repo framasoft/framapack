@@ -1,0 +1,79 @@
+html {
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  font-size: 1em;
+}
+
+#left {
+  position: fixed;
+  padding-top: 30px;
+  width: 250px;
+  height: 100%;
+  background-color: #CCC;
+}
+
+#left ul {
+  padding-left: 10px;
+  margin-top: 10px;
+}
+
+#left ul li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+#left ul li a, #left ul li a:active, #left ul li a:hover, #left ul li a:visited {
+  /*color: # */
+}
+
+#content {
+  margin-left: 250px;
+  padding-top: 30px;
+  padding-left: 10px;
+}
+
+#content .input {
+  height: 30px;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+#content .input.textarea {
+  height: 110px;
+}
+
+#content .input label {
+  position: absolute;
+  top: 0px;
+}
+
+#content .input input, #content .input select, #content .input textarea {
+  position: absolute;
+  left: 200px;
+  width: 600px;
+}
+
+#content .input textarea {
+  margin: 0px;
+  padding: 0px;
+  width: 400px;
+  height: 100px;
+}
+
+#content table {
+  margin-bottom: 15px;
+}
+
+#content .help {
+  position: absolute;
+  left: 610px;
+  top: 5px;
+  font-size: 0.9em;
+}

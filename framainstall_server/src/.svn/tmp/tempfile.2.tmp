@@ -1,0 +1,344 @@
+<<<<<<< .mine
+#ifndef APPS_H_INCLUDED
+#define APPS_H_INCLUDED
+
+#include <stdlib.h>
+#include <string>
+
+class Apps
+{
+    protected:
+        std::string     apps[46];
+        std::string     url[46];
+        std::string     install[46];
+        std::string     name[46];
+        int             nb;
+        int             current;
+        void            add(std::string url, std::string apps, std::string install, std::string name);
+
+    public:
+                        Apps();
+        int             getNb() { return this->nb; };
+        bool            nextApp(std::string* application[4]);
+};
+
+Apps::Apps()
+{
+    this->current = 0;
+    this->nb = 0;
+
+    std::string temp = std::getenv("TEMP");
+
+    
+#ifdef ZIP
+    this->add("http://downloads.sourceforge.net/sevenzip/7z465.exe", temp + "\\framapack-zip.exe", "" + temp + "\\framapack-zip.exe" + " /S", "7-Zip");
+#endif
+    
+#ifdef ABIWORD
+    this->add("http://www.abisource.com/downloads/abiword/2.8.1/Windows/abiword-setup-2.8.1.exe", temp + "\\framapack-abiword.exe", "" + temp + "\\framapack-abiword.exe" + " /S", "AbiWord");
+#endif
+    
+#ifdef ALBUMSHAPER
+    this->add("http://downloads.sourceforge.net/project/albumshaper/albumshaper/2.1/albumshaper_2.1_win.exe", temp + "\\framapack-albumshaper.exe", "" + temp + "\\framapack-albumshaper.exe" + " /S", "Album Shaper");
+#endif
+    
+#ifdef AUDACITY
+    this->add("http://downloads.sourceforge.net/project/audacity/audacity/1.2.6/audacity-win-1.2.6.exe", temp + "\\framapack-audacity.exe", "" + temp + "\\framapack-audacity.exe" + " /VERYSILENT", "Audacity");
+#endif
+    
+#ifdef AVIDEMUX
+    this->add("http://downloads.sourceforge.net/project/avidemux/avidemux/2.5.2/avidemux_2.5.2_win32.exe", temp + "\\framapack-avidemux.exe", "" + temp + "\\framapack-avidemux.exe" + " /S", "Avidemux");
+#endif
+    
+#ifdef BLENDER
+    this->add("http://download.blender.org/release/Blender2.49b/blender-2.49b-windows.exe", temp + "\\framapack-blender.exe", "" + temp + "\\framapack-blender.exe" + " /S", "Blender");
+#endif
+    
+#ifdef CDEX
+    this->add("http://www.framapack.org/apps/cdex_setup.exe", temp + "\\framapack-cdex.exe", "" + temp + "\\framapack-cdex.exe" + " /S", "CDex");
+#endif
+    
+#ifdef CLAMWIN
+    this->add("http://downloads.sourceforge.net/project/clamwin/clamwin/0.95.3/clamwin-0.95.3-setup.exe", temp + "\\framapack-clamwin.exe", "" + temp + "\\framapack-clamwin.exe" + " /VERYSILENT /NORESTART /NOERROR", "ClamWin");
+#endif
+    
+#ifdef CODEBLOCKS
+    this->add("http://downloads.sourceforge.net/codeblocks/codeblocks-8.02-setup.exe", temp + "\\framapack-codeblocks.exe", "" + temp + "\\framapack-codeblocks.exe" + " /S", "Code::Blocks");
+#endif
+    
+#ifdef DIA
+    this->add("http://downloads.sourceforge.net/project/dia-installer/dia-win32-installer/0.97/dia-setup-0.97.exe", temp + "\\framapack-dia.exe", "" + temp + "\\framapack-dia.exe" + " /S", "Dia");
+#endif
+    
+#ifdef DITTO
+    this->add("http://downloads.sourceforge.net/project/ditto-cp/Ditto/3.16.8/DittoSetup_3_16_8_0.exe", temp + "\\framapack-ditto.exe", "" + temp + "\\framapack-ditto.exe" + " /VERYSILENT", "Ditto");
+#endif
+    
+#ifdef FILEZILLA
+    this->add("http://d10xg45o6p6dbl.cloudfront.net/projects/f/filezilla/FileZilla_3.3.1_win32-setup.exe", temp + "\\framapack-filezilla.exe", "" + temp + "\\framapack-filezilla.exe" + " /S", "FileZilla");
+#endif
+    
+#ifdef FIREFOX
+    this->add("http://download.mozilla.org/?product=firefox-3.6&os=win&lang=fr", temp + "\\framapack-firefox.exe", "" + temp + "\\framapack-firefox.exe" + " -ms", "Firefox");
+#endif
+    
+#ifdef FREECIV
+    this->add("http://downloads.sourceforge.net/project/freeciv/Freeciv%202.1/2.1.9/Freeciv-2.1.9-win32-gtk2-setup.exe", temp + "\\framapack-freeciv.exe", "" + temp + "\\framapack-freeciv.exe" + " /S", "Freeciv");
+#endif
+    
+#ifdef FREEMIND
+    this->add("http://downloads.sourceforge.net/project/freemind/freemind/0.8.1/FreeMind-Windows-Installer-0.8.1-max.exe", temp + "\\framapack-freemind.exe", "" + temp + "\\framapack-freemind.exe" + " /VERYSILENT", "Freemind");
+#endif
+    
+#ifdef FRETSONFIRE
+    this->add("http://downloads.sourceforge.net/project/fretsonfire/fretsonfire/1.3.110/FretsOnFire-1.3.110-win32.exe", temp + "\\framapack-fretsonfire.exe", "" + temp + "\\framapack-fretsonfire.exe" + " /S", "Frets On Fire");
+#endif
+    
+#ifdef GIMP
+    this->add("http://downloads.sourceforge.net/project/gimp-win/GIMP%20%2B%20GTK%2B%20%28stable%20release%29/GIMP%202.6.8%20%2B%20GTK%2B%202.16.6/gimp-2.6.8-i686-setup.exe", temp + "\\framapack-gimp.exe", "" + temp + "\\framapack-gimp.exe" + " /VERYSILENT /NORESTART", "GIMP");
+#endif
+    
+#ifdef GNUCASH
+    this->add("http://downloads.sourceforge.net/project/gnucash/gnucash%20%28stable%29/2.2.9/gnucash-2.2.9-setup.exe", temp + "\\framapack-gnucash.exe", "" + temp + "\\framapack-gnucash.exe" + " /VERYSILENT", "GnuCash");
+#endif
+    
+#ifdef GNUMERIC
+    this->add("http://www.gnome.org/~jody/gnumeric/win32/gnumeric-1.9.16-20091130.exe", temp + "\\framapack-gnumeric.exe", "" + temp + "\\framapack-gnumeric.exe" + " /S", "Gnumeric");
+#endif
+    
+#ifdef INFRARECORDER
+    this->add("http://downloads.sourceforge.net/project/infrarecorder/InfraRecorder/0.50/ir050.exe", temp + "\\framapack-infrarecorder.exe", "" + temp + "\\framapack-infrarecorder.exe" + " /S", "InfraRecorder");
+#endif
+    
+#ifdef INKSCAPE
+    this->add("http://downloads.sourceforge.net/project/inkscape/inkscape/0.47/Inkscape-0.47-3.exe", temp + "\\framapack-inkscape.exe", "" + temp + "\\framapack-inkscape.exe" + " /S", "Inkscape");
+#endif
+    
+#ifdef KOMODOEDIT
+    this->add("http://downloads.activestate.com/Komodo/releases/5.2.4/Komodo-Edit-5.2.4-4343.msi", temp + "\\framapack-komodoedit.msi", "msiexec.exe /qn /norestart /i \"" + temp + "\\framapack-komodoedit.msi" + "\"", "Komodo Edit");
+#endif
+    
+#ifdef LAUNCHY
+    this->add("http://downloads.sourceforge.net/project/launchy/Launchy%20for%20Windows/2.1.2/LaunchySetup212.exe", temp + "\\framapack-launchy.exe", "" + temp + "\\framapack-launchy.exe" + " /VERYSILENT", "Launchy");
+#endif
+    
+#ifdef NEVERBALL
+    this->add("http://neverball.org/neverball-1.5.4-setup.exe", temp + "\\framapack-neverball.exe", "" + temp + "\\framapack-neverball.exe" + " /S", "Neverball");
+#endif
+    
+#ifdef NOTEPAD
+    this->add("http://downloads.sourceforge.net/project/notepad-plus/notepad%2B%2B%20releases%20binary/npp%205.6.4%20bin/npp.5.6.4.Installer.exe", temp + "\\framapack-notepad.exe", "" + temp + "\\framapack-notepad.exe" + " /S", "Notepad++");
+#endif
+    
+#ifdef OPENOFFICEORG
+    this->add("http://openoffice.bouncer.osuosl.org/?product=OpenOffice.org&os=winwjre&lang=fr&version=3.1.1", temp + "\\framapack-openofficeorg.exe", "" + temp + "\\framapack-openofficeorg.exe" + " /S /GUILEVEL=qn", "OpenOffice.org");
+#endif
+    
+#ifdef PDFCREATOR
+    this->add("http://downloads.sourceforge.net/project/pdfcreator/PDFCreator/PDFCreator%200.9.9/PDFCreator-0_9_9_setup.exe", temp + "\\framapack-pdfcreator.exe", "" + temp + "\\framapack-pdfcreator.exe" + " /SP- /VERYSILENT /NORESTART /LANG=french /NOICONS /COMP=\"!toolbar\"  /components=\"!toolbar\" /tasks=\"!desktop_icon\" /DontUseYahooSearch /f", "PDFCreator");
+#endif
+    
+#ifdef PIDGIN
+    this->add("http://downloads.sourceforge.net/project/pidgin/Pidgin/2.6.5/pidgin-2.6.5.exe", temp + "\\framapack-pidgin.exe", "" + temp + "\\framapack-pidgin.exe" + " /DS=1 /SMS=1 /L=1036 /S", "Pidgin");
+#endif
+    
+#ifdef POKERTH
+    this->add("http://downloads.sourceforge.net/project/pokerth/pokerth/0.7/PokerTH-0.7.1-win-installer.exe", temp + "\\framapack-pokerth.exe", "" + temp + "\\framapack-pokerth.exe" + " --mode unattended", "PokerTH");
+#endif
+    
+#ifdef PUTTY
+    this->add("http://the.earth.li/~sgtatham/putty/latest/x86/putty-0.60-installer.exe", temp + "\\framapack-putty.exe", "" + temp + "\\framapack-putty.exe" + " /VERYSILENT", "PuTTY");
+#endif
+    
+#ifdef RSSOWL
+    this->add("http://downloads.sourceforge.net/project/rssowl/rssowl%202/2.0.2/RSSOwl%20Setup%202.0.2.exe", temp + "\\framapack-rssowl.exe", "" + temp + "\\framapack-rssowl.exe" + " /S", "RSSOwl");
+#endif
+    
+#ifdef SCRATCH
+    this->add("http://download.scratch.mit.edu/ScratchInstaller1.4.exe", temp + "\\framapack-scratch.exe", "" + temp + "\\framapack-scratch.exe" + " /SP- /S", "Scratch");
+#endif
+    
+#ifdef SCRIBUS
+    this->add("http://downloads.sourceforge.net/project/scribus/scribus/1.3.3.13/scribus-1.3.3.13-win32-install.exe", temp + "\\framapack-scribus.exe", "" + temp + "\\framapack-scribus.exe" + " /S", "Scribus");
+#endif
+    
+#ifdef SONGBIRD
+    this->add("http://download.songbirdnest.com/installer/windows/i686-msvc8/Songbird_1.4.3-1438_windows-i686-msvc8.exe", temp + "\\framapack-songbird.exe", "" + temp + "\\framapack-songbird.exe" + " /S", "Songbird");
+#endif
+    
+#ifdef SUMATRAPDF
+    this->add("http://kjkpub.s3.amazonaws.com/sumatrapdf/rel/SumatraPDF-1.0.1-install.exe", temp + "\\framapack-sumatrapdf.exe", "" + temp + "\\framapack-sumatrapdf.exe" + " /S", "Sumatra PDF");
+#endif
+    
+#ifdef SUNBIRD
+    this->add("http://download.mozilla.org/?product=sunbird-0.9&os=win&lang=fr", temp + "\\framapack-sunbird.exe", "" + temp + "\\framapack-sunbird.exe" + " -ms", "Sunbird");
+#endif
+    
+#ifdef SWEETHOMED
+    this->add("http://downloads.sourceforge.net/project/sweethome3d/SweetHome3D/SweetHome3D-2.2/SweetHome3D-2.2-windows.exe", temp + "\\framapack-sweethomed.exe", "" + temp + "\\framapack-sweethomed.exe" + " /VERYSILENT /NORESTART", "Sweet Home 3D");
+#endif
+    
+#ifdef THUNDERBIRD
+    this->add("http://download.mozilla.org/?product=thunderbird-3.0.1&os=win&lang=fr", temp + "\\framapack-thunderbird.exe", "" + temp + "\\framapack-thunderbird.exe" + " -ms", "Thunderbird");
+#endif
+    
+#ifdef TUXPAINT
+    this->add("http://downloads.sourceforge.net/project/tuxpaint/tuxpaint/0.9.21/tuxpaint-0.9.21-win32-installer.exe", temp + "\\framapack-tuxpaint.exe", "" + temp + "\\framapack-tuxpaint.exe" + " /SP- /VERYSILENT /NORESTART /NOCANCEL", "Tux Paint");
+#endif
+    
+#ifdef TUXTYPING
+    this->add("http://alioth.debian.org/frs/download.php/3177/tuxtype-1.8.0-win32-installer.exe", temp + "\\framapack-tuxtyping.exe", "" + temp + "\\framapack-tuxtyping.exe" + " /S", "Tux Typing");
+#endif
+    
+#ifdef TUXMATH
+    this->add("http://alioth.debian.org/frs/download.php/2972/tuxmath-1.7.2-win32-installer.exe", temp + "\\framapack-tuxmath.exe", "" + temp + "\\framapack-tuxmath.exe" + " /S", "TuxMath");
+#endif
+    
+#ifdef VLC
+    this->add("http://ftp.free.org/mirrors/videolan/vlc/1.0.3/win32/vlc-1.0.3-win32.exe", temp + "\\framapack-vlc.exe", "" + temp + "\\framapack-vlc.exe" + " /S", "VLC");
+#endif
+    
+#ifdef VUZE
+    this->add("http://downloads.sourceforge.net/project/azureus/vuze/vuze-4.3.0.4/Vuze_4.3.0.4a_windows.exe", temp + "\\framapack-vuze.exe", "" + temp + "\\framapack-vuze.exe" + " -q", "Vuze");
+#endif
+    
+#ifdef WINSCP
+    this->add("http://winscp.net/download/winscp425setup.exe", temp + "\\framapack-winscp.exe", "" + temp + "\\framapack-winscp.exe" + " /SP- /LANG=French /VERYSILENT", "WinScp");
+#endif
+    
+#ifdef XCAS
+    this->add("http://www-fourier.ujf-grenoble.fr/~parisse/giac/xcasinst.exe", temp + "\\framapack-xcas.exe", "" + temp + "\\framapack-xcas.exe" + " /SP- /S", "xcas");
+#endif
+    
+#ifdef RUBBERSTAMPS
+    this->add("http://downloads.sourceforge.net/project/tuxpaint/tuxpaint-stamps/2009.06.28/tuxpaint-stamps-2009-06-28-win32-installer.exe", temp + "\\framapack-rubberstamps.exe", "" + temp + "\\framapack-rubberstamps.exe" + " /SP- /VERYSILENT /NORESTART /NOCANCEL", "Rubber Stamps");
+#endif
+    
+}
+
+
+bool Apps::nextApp(std::string* application[4])
+{
+    if (this->current >= this->nb) {
+        return false;
+    }
+
+    application[0] = &this->url[this->current];
+    application[1] = &this->apps[this->current];
+    application[2] = &this->install[this->current];
+    application[3] = &this->name[this->current];
+
+    this->current++;
+
+    return true;
+}
+
+void Apps::add(std::string url, std::string apps, std::string install, std::string name)
+{
+    this->url[this->nb] = url;
+    this->apps[this->nb] = apps;
+    this->install[this->nb] = install;
+    this->name[this->nb] = name;
+    this->nb++;
+}
+
+#endif // APPS_H_INCLUDED
+=======
+/*
+Framapack is an utils for download and install free software
+Copyright (C) 2009  Simon Leblanc <contact@leblanc-simon.eu>
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+*/
+
+#ifndef APPS_H_INCLUDED
+#define APPS_H_INCLUDED
+
+#include <stdlib.h>
+#include <string>
+
+#include "options.h"
+
+class Apps
+{
+    protected:
+        std::string     apps[17];
+        std::string     url[17];
+        std::string     install[17];
+        std::string     name[17];
+        int             nb;
+        int             current;
+
+        void            add(std::string url, std::string apps, std::string install, std::string name);
+
+    public:
+                        Apps();
+        int             getNb() { return this->nb; };
+        bool            nextApp(std::string* application[4]);
+};
+
+Apps::Apps()
+{
+    this->current = 0;
+    this->nb = 0;
+
+    std::string temp = "";
+
+    Options::init();
+
+    if (Options::useCache()) {
+        if (Options::createCacheFolder() != -1) {
+            temp = CACHE_FOLDER;
+        } else {
+            throw std::string("Error in the creation of the cache directory !");
+        }
+    } else {
+        temp = std::getenv("TEMP");
+    }
+
+#ifdef AUDACITY
+    this->add("http://downloads.sourceforge.net/project/audacity/audacity/1.2.6/audacity-win-1.2.6.exe", temp + "\\audacity.exe", temp + "\\audacity.exe" + " /VERYSILENT", "Audacity");
+#endif
+
+}
+
+
+bool Apps::nextApp(std::string* application[4])
+{
+    if (this->current >= this->nb) {
+        return false;
+    }
+
+    application[0] = &this->url[this->current];
+    application[1] = &this->apps[this->current];
+    application[2] = &this->install[this->current];
+    application[3] = &this->name[this->current];
+
+    this->current++;
+
+    return true;
+}
+
+void Apps::add(std::string url, std::string apps, std::string install, std::string name)
+{
+    this->url[this->nb] = url;
+    this->apps[this->nb] = apps;
+    this->install[this->nb] = install;
+    this->name[this->nb] = name;
+    this->nb++;
+}
+
+#endif // APPS_H_INCLUDED
+>>>>>>> .r65

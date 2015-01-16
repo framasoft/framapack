@@ -1,0 +1,10 @@
+version 1.2.0.0
+* ajout d'un système de partage de Framapack
+* ajout d'un système de cache
+
+version 1.1.0.0
+* bugfix
+* ajout de l'option permettant d'utiliser Framapack via un proxy
+
+version 1.0.0.0
+* première version de Framapack (permet de sélectionner, télécharger et installer les applications)

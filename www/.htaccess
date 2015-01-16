@@ -1,0 +1,10 @@
+RewriteEngine On
+
+RewriteCond %{HTTP_HOST} ^framapack.org$
+RewriteRule ^(.*)$ http://www.framapack.org/$1 [QSA,L,R=301]
+
+Redirect permanent /~framaflux/ http://rss.framasoft.org/
+
+<FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$">
+Header set Expires "Thu, 15 Apr 2020 20:00:00 GMT"
+</FilesMatch>

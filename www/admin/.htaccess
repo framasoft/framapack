@@ -1,0 +1,7 @@
+AuthUserFile /home/framapack/www/admin/.htpasswd
+AuthGroupFile /dev/null
+AuthName "Tu veux participer ? Contact Leviathan de Framasoft..."
+AuthType Basic
+<Limit GET POST>
+require valid-user
+</Limit>

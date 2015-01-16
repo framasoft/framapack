@@ -1,0 +1,89 @@
+#include "resource.h"
+
+
+IDC_ICONAPP ICON DISCARDABLE "framapack.ico"
+
+DLG_MAIN DIALOGEX 6, 5, 300, 70
+
+CAPTION "Framapack"
+/*
+Framapack is an utils for download and install free software
+Copyright (C) 2009  Simon Leblanc <contact@leblanc-simon.eu>
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+*/
+
+FONT 8, "MS Sans Serif", 0, 0, 1
+
+STYLE 0x10CE0804
+
+BEGIN
+  // le label
+  CONTROL "Test", IDC_LABEL, "Static", WS_CHILD | WS_VISIBLE, 15, 10, 270, 9
+
+  // Le bouton permettant d'annuler
+  CONTROL "Annuler", IDC_BTN_CANCEL, "Button", 0x10010000 | WS_VISIBLE, 240, 50,  45,  15
+
+  // Le bouton permettant de quitter
+  CONTROL "Quitter", IDC_BTN_QUIT, "Button", 0x10010000 | NOT WS_VISIBLE, 240, 50, 45,  15
+
+  // La barre de progression pour le téléchargement
+  CONTROL "ProgressBarDownload", IDC_PBD, "msctls_progress32", WS_BORDER | WS_VISIBLE, 15, 30, 270, 10
+
+  // La barre de progression pour l'installation
+  CONTROL "ProgressBarInstall", IDC_PBI, "msctls_progress32", WS_CHILD | NOT WS_VISIBLE | PBS_MARQUEE, 15, 30, 270, 10
+END
+
+//
+// SUPPORT FOR WINDOWS XP THEMES:
+// THIS WILL MAKE THE PROGRAM USE THE COMMON CONTROLS
+// LIBRARY VERSION 6.0 (IF IT IS AVAILABLE)
+//
+1 24 "framainstall.exe.Manifest"
+
+// L'icone de l'application
+2 ICON "framapack.ico"
+
+// Information de version
+1 VERSIONINFO
+ FILEVERSION __FILEVERSION__
+ PRODUCTVERSION __PRODUCTVERSION__
+ FILEFLAGSMASK 0x3fL
+ FILEFLAGS 0x0L
+ FILEOS 0x0L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "000004b0"
+        BEGIN
+            VALUE "Comments", __COMMENTS__
+            VALUE "CompanyName", __COMPANYNAME__
+            VALUE "FileDescription", __FILEDESCRIPTION__
+            VALUE "FileVersion", __SZFILEVERSION__
+            VALUE "InternalName", __INTERNALNAME__
+            VALUE "LegalCopyright", __LEGALCOPYRIGHT__
+            VALUE "OriginalFilename", __ORIGINALFILENAME__
+            VALUE "ProductName", __PRODUCTNAME__
+            VALUE "ProductVersion", __SZPRODUCTVERSION__
+      END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0, 1200
+    END
+END
+

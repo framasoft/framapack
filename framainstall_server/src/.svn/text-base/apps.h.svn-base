@@ -1,0 +1,97 @@
+/*
+Framapack is an utils for download and install free software
+Copyright (C) 2009  Simon Leblanc <contact@leblanc-simon.eu>
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+*/
+
+#ifndef APPS_H_INCLUDED
+#define APPS_H_INCLUDED
+
+#include <stdlib.h>
+#include <string>
+
+#include "options.h"
+
+class Apps
+{
+    protected:
+        std::string     apps[17];
+        std::string     url[17];
+        std::string     install[17];
+        std::string     name[17];
+        int             nb;
+        int             current;
+
+        void            add(std::string url, std::string apps, std::string install, std::string name);
+
+    public:
+                        Apps();
+        int             getNb() { return this->nb; };
+        bool            nextApp(std::string* application[4]);
+};
+
+Apps::Apps()
+{
+    this->current = 0;
+    this->nb = 0;
+
+    std::string temp = "";
+
+    Options::init();
+
+    if (Options::useCache()) {
+        if (Options::createCacheFolder() != -1) {
+            temp = CACHE_FOLDER;
+        } else {
+            throw std::string("Error in the creation of the cache directory !");
+        }
+    } else {
+        temp = std::getenv("TEMP");
+    }
+
+#ifdef AUDACITY
+    this->add("http://downloads.sourceforge.net/project/audacity/audacity/1.2.6/audacity-win-1.2.6.exe", temp + "\\audacity.exe", temp + "\\audacity.exe" + " /VERYSILENT", "Audacity");
+#endif
+
+}
+
+
+bool Apps::nextApp(std::string* application[4])
+{
+    if (this->current >= this->nb) {
+        return false;
+    }
+
+    application[0] = &this->url[this->current];
+    application[1] = &this->apps[this->current];
+    application[2] = &this->install[this->current];
+    application[3] = &this->name[this->current];
+
+    this->current++;
+
+    return true;
+}
+
+void Apps::add(std::string url, std::string apps, std::string install, std::string name)
+{
+    this->url[this->nb] = url;
+    this->apps[this->nb] = apps;
+    this->install[this->nb] = install;
+    this->name[this->nb] = name;
+    this->nb++;
+}
+
+#endif // APPS_H_INCLUDED
