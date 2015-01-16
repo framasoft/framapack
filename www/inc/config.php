@@ -51,7 +51,7 @@ define('USE_UPX', true);
 define('UPX_BIN', '/usr/bin/upx');
 
 // L'adresse e-mail de l'admin (en cas de bug dans l'application)
-define('EMAIL_ADMIN', 'tech@framalistes.org');
+define('EMAIL_ADMIN', 'your@email.com');
 
 // Si vous souhaitez mettre des statistiques, placez le code ici
 $stats = ''; /*'<script type="text/javascript">
