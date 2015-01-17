@@ -88,7 +88,7 @@
     </div>
     <div id="footer" class="border">
       <div class="details">
-        <p>Framapack est un projet de <a href="http://www.framasoft.net/" title="Acc&eacute;der &agrave; l'annuaire de logiciels libres de Framasoft">Framasoft</a>. Si vous avez des questions, consultez la <a href="faq.php" title="Voir la foire aux questions de Framapack">F.A.Q</a> ou envoyez un e-mail &agrave; l'adresse : <a href="mailto:%63%6F%6E%74%61%63%74%40%66%72%61%6D%61%70%61%63%6B%2E%6F%72%67">&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#102;&#114;&#97;&#109;&#97;&#112;&#97;&#99;&#107;&#46;&#111;&#114;&#103;</a></p>
+        <p>Framapack est un projet de <a href="http://framasoft.org/" title="Acc&eacute;der &agrave; l'annuaire de logiciels libres de Framasoft">Framasoft</a>. Si vous avez des questions, consultez la <a href="faq.php" title="Voir la foire aux questions de Framapack">F.A.Q</a> ou contactez nous <a href="https://contact.framasoft.org/" title="Contacter Framasoft">ici</a>.</p>
         <p>Framapack est un logiciel libre compos&eacute; :</p>
         <ul>
           <li>d'un site Internet sous licence libre <a href="http://www.gnu.org/licenses/agpl-3.0.html" title="Voir le texte de la licence GNU/AGPL version 3">GNU/AGPL v3</a>.</li>
