@@ -11,19 +11,6 @@
           </ul>
         </div>
       </div>
-      <div class="network border">
-        <p>Notre r&eacute;seau :</p>
-        <ul>
-          <li><a href="http://fr.wikipedia.org/wiki/Framasoft" title="Acc&eacute;der &agrave; l'article Wikipedia propos de Framasoft">Framapedia</a></li>
-          <li><a href="http://www.framasoft.org" title="Acc&eacute;der &agrave; l'annuaire de logiciels libres de Framasoft">Framasoft</a></li>
-          <li><a href="http://www.framakey.org" title="Acc&eacute;der au site des logiciels portables : Framakey">Framakey</a></li>
-          <li><a href="http://www.framabook.org" title="Acc&eacute;der au site des livres libres Framabook">Framabook</a></li>
-          <li><a href="http://www.framablog.org/index.php/pages/framatube" title="Acc&eacute;der au site Framatube">Framatube</a></li>
-          <li><a href="http://www.framablog.org" title="Acc&eacute;der au blog de Framasoft">Framablog</a></li>
-          <li><a href="http://forum.framasoft.org" title="Acc&eacute;der aux forums de Framasoft">Framagora</a></li>
-          <li><a href="http://www.framapack.org" title="Acc&eacute;der &agrave; l'installeur de logiciels libres : Framapack">Framapack</a></li>
-        </ul>
-      </div>
     </div>
     <div id="content" class="border">
       <ul class="list-faq">
@@ -45,8 +32,8 @@
       
       <div class="question"><a name="qui_propose_framapack"></a>
         <h2>Qui propose Framapack ?</h2>
-        <p>Framapack a &eacute;t&eacute; d&eacute;velopp&eacute; par le r&eacute;seau <a href="http://www.framasoft.net" title="Acc&eacute;der au site de Framasoft">Framasoft</a>. Nous avons &eacute;galement fait le choix des applications propos&eacute;es ici.</p>
-        <p>Si vous le souhaitez vous pouvez nous soumettre des id&eacute;es d'am&eacute;lioration &agrave; l'adresse contact _AT_ framapack.org.</p>
+        <p>Framapack a &eacute;t&eacute; d&eacute;velopp&eacute; par le r&eacute;seau <a href="http://framasoft.org/" title="Acc&eacute;der au site de Framasoft">Framasoft</a>. Nous avons &eacute;galement fait le choix des applications propos&eacute;es ici.</p>
+        <p>Si vous le souhaitez vous pouvez nous soumettre des id&eacute;es d'am&eacute;lioration via <a href="https://contact.framasoft.org/" title="Contacter Framasoft">le formulaire de contact</a>.</p>
       </div>
       
       <div class="question"><a name="pourquoi_mon_logiciel_favori_n_est_pas_disponible"></a>
@@ -64,7 +51,7 @@
       <div class="question"><a name="je_souhaite_faire_une_version_personnalise_de_framapack"></a>
         <h2>Je souhaite faire une version personnalis&eacute; de Framapack</h2>
         <p>Aucun probl&egrave;me. Framapack est un logiciel libre distribu&eacute; sous licence <a href="http://www.gnu.org/licenses/agpl-3.0.html" title="Voir le texte de la licence GNU/AGPL version 3">GNU/AGPL version 3</a> pour le site Internet et <a href="http://www.gnu.org/licenses/gpl-2.0.html" title="Voir le texte de la licence GNU/GPL version 2">GNU/GPL version 2</a> pour le programme.</p>
-        <p>Vous pouvez r&eacute;cup&eacute;rer le code source du site Internet et du programme sur <a href="http://framacontrib.svn.sourceforge.net/viewvc/framacontrib/framainstall/trunk/" title="Acc&eacute;der au d&eacute;p&ocirc;t subversion du projet Framapack">Sourceforge</a>.</p>
+        <p>Vous pouvez r&eacute;cup&eacute;rer le code source du site Internet et du programme sur <a href="https://git.framasoft.org/framasoft/framapack" title="Acc&eacute;der au d&eacute;p&ocirc;t git du projet Framapack">le GitLab de Framasoft</a>.</p>
         <p>Suivez les instructions du fichier INSTALL afin d'installer Framapack sur votre serveur.</p>
       </div>
       

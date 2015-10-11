@@ -88,13 +88,13 @@
     </div>
     <div id="footer" class="border">
       <div class="details">
-        <p>Framapack est un projet de <a href="http://www.framasoft.net/" title="Acc&eacute;der &agrave; l'annuaire de logiciels libres de Framasoft">Framasoft</a>. Si vous avez des questions, consultez la <a href="faq.php" title="Voir la foire aux questions de Framapack">F.A.Q</a> ou envoyez un e-mail &agrave; l'adresse : <a href="mailto:%63%6F%6E%74%61%63%74%40%66%72%61%6D%61%70%61%63%6B%2E%6F%72%67">&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#102;&#114;&#97;&#109;&#97;&#112;&#97;&#99;&#107;&#46;&#111;&#114;&#103;</a></p>
+        <p>Framapack est un projet de <a href="http://framasoft.org/" title="Acc&eacute;der &agrave; l'annuaire de logiciels libres de Framasoft">Framasoft</a>. Si vous avez des questions, consultez la <a href="faq.php" title="Voir la foire aux questions de Framapack">F.A.Q</a> ou contactez nous <a href="https://contact.framasoft.org/" title="Contacter Framasoft">ici</a>.</p>
         <p>Framapack est un logiciel libre compos&eacute; :</p>
         <ul>
           <li>d'un site Internet sous licence libre <a href="http://www.gnu.org/licenses/agpl-3.0.html" title="Voir le texte de la licence GNU/AGPL version 3">GNU/AGPL v3</a>.</li>
           <li>d'un installateur sous licence libre <a href="http://www.gnu.org/licenses/gpl-2.0.html" title="Voir le texte de la licence GNU/GPL version 2">GNU/GPL v2</a>.</li>
         </ul>
-        <p>Les sources de Framapack sont disponibles selon les termes de leur licence respective sur <a href="http://framacontrib.svn.sourceforge.net/viewvc/framacontrib/framainstall/trunk/" title="Acc&eacute;der au d&eacute;p&ocirc;t subversion du projet Framapack">SourceForge</a>.</p>
+        <p>Les sources de Framapack sont disponibles selon les termes de leur licence respective sur <a href="https://git.framasoft.org/framasoft/framapack" title="Acc&eacute;der au d&eacute;p&ocirc;t git du projet Framapack">le GitLab de Framasoft</a>.</p>
         <p>Les pingouins qui se promènent sur le site nous viennent de <a href="http://www.le-terrier.net/pingouin/pingouin.html" title="Acc&eacute;der au site de L.L. de Mars">L.L. de Mars</a> et sont placés sous licence <a href="http://artlibre.org/licence/lal" title="Voir le texte de la licence Art Libre">Art Libre</a>.</p>
         <p>Les images d'information et de suppression sont des &oelig;uvres de <a href="http://www.famfamfam.com/lab/icons/silk/" title="Acc&eacute;der au site de Mark James">Mark James</a> et sont plac&eacute;es sous licence <a href="http://creativecommons.org/licenses/by/2.5/" title="Voir le texte de la licence Creative Commons BY 2.5">Creative Commons Attribution</a>.</p>
         <p>L'image de t&eacute;l&eacute;chargement est une &oelig;uvre de <a href="http://www.futurosoft.es/" title="Acc&eacute;der au site de Sergio Sanchez Lopez">Sergio Sanchez Lopez</a> et est plac&eacute;e sous licence <a href="http://www.gnu.org/licenses/gpl.html" title="Voir le texte de la licence GNU/GPL">GNU/GPL</a>.</p>
