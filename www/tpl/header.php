@@ -13,12 +13,12 @@
     <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
     <!-- <script type="text/javascript" src="js/fancybox/jquery.fancybox-1.3.4.pack.js"></script> -->
     <script type="text/javascript" src="js/jquery.colorbox-min.js"></script>
-    
+
     <script type="text/javascript" src="functions.js?2"></script>
-    <script src="/nav/nav.js" id="nav_js" type="text/javascript"></script>
 <?php } ?>
   </head>
   <body>
+    <script src="https://framasoft.org/nav/nav.js" type="text/javascript"></script>
     <!--
     Framapack est un installeur de logiciels libres.
     Copyright (C) 2009  Simon Leblanc <contact@leblanc-simon.eu>
@@ -27,7 +27,7 @@
     it under the terms of the GNU Affero General Public License as
     published by the Free Software Foundation, either version 3 of the
     License.
-    
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
