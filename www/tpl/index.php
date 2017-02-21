@@ -2,28 +2,33 @@
     <script type="text/javascript">
       var url_framapack = '<?php echo ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']?>';
     </script>
-    <div id="header">
-      <div class="bloc">
-        <div class="logo"><img src="images/logo_pack2.png" alt="Logo de Framapack" /></div>
-        <div class="description">
-          <ul>
-            <li>1. S&eacute;lectionnez les applications.</li>
-            <li>2. T&eacute;l&eacute;chargez Framapack.</li>
-            <li>3. Installez vos applications.</li>
-          </ul>
-        </div>
-      </div>
-    <div id="content" class="border">
-      <form action="index.php" method="post">
-      <div id="select">
-        <div id="category">
+    <div class="container ombre">
+        <header>
+            <div class="row">
+                <div class="col-md-8">
+                    <h1><span class="frama">Frama</span><span class="logiciel">pack</span></h1>
+                    <p class="lead">Installez un peu de liberté…</p>
+                </div>
+                <div class="col-md-4 hidden-sm hidden-xs">
+                    <p class="text-center"><img src="images/pingouin.png" alt="" /></p>
+                </div>
+            </div>
+            <hr class="trait" role="presentation" />
+        </header>
+        <main id="content">
+            <form action="index.php" method="post">
+            <div id="select" class="col-md-8">
+                <h2 class="sr-only">Sélectionner les applications</h2>
+                <div id="category" role="tabpanel">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
           <?php
           $i = 0;
           $applications_list = '';
           while ($category->next()) {
             $class = '';
             if ($i === 0){
-              $class = ' selected';
+              $class = ' active';
           ?>
           <script type="text/javascript">
             var current = <?php echo $category->getId() ?>;
@@ -33,71 +38,69 @@
               $i++;
             }
           ?>
-          <div id="bloc-category-<?php echo $category->getId() ?>" class="category border<?php echo $class ?>" onclick="show(<?php echo $category->getId() ?>, <?php echo $category->getNbApps() ?>);"><?php echo $category ?></div>
+                        <li role="presentation" id="bloc-category-<?php echo $category->getId() ?>" class="<?php echo $class ?>"><a href="#category-<?php echo $category->getId() ?>" aria-controls="category-<?php echo $category->getId() ?>" role="tab" data-toggle="tab"><?php echo $category ?></a></li>
           <?php
             ob_start();
           ?>
-          <div id="category_<?php echo $category->getId() ?>" class="list-applications">
-          <?php 
+                    </ul>
+                    <div role="tabpanel" class="tab-pane<?php echo $class ?>" id="category-<?php echo $category->getId() ?>" class="list-applications">
+          <?php
             $application = $category->getApplications('position ASC');
             while ($application->next()) {
           ?>
-            <div class="application border">
-              <div class="logo"><img src="logo/<?php echo $application->getLogo() ?>" alt="Logo de <?php echo $application ?>" /></div>
-              <div class="name"><?php echo $application ?> <span class="version"><?php echo $application->getVersion() ?></span></div>
-              <div class="description"><?php echo $application->getDescription() ?></div>
-              <div class="checkbox"><input type="checkbox" name="applications[]" rel="<?php echo $application ?>" value="<?php echo $application->getId() ?>" id="application_<?php echo $application->getId() ?>" /></div>
-              <?php if ($application->hasNotice()) { ?><div class="information"><a class="fiche iframe cboxElement" href="<?php echo str_replace('&', '&amp;', $application->getNoticeUrl()) ?>" title="Notice d&eacute;taill&eacute;e du logiciel <?php echo $application ?>"><img src="images/information.png" alt="Bouton affichant la notice d&eacute;taill&eacute;e" /></a></div><?php } ?>
-              
-            </div>
+                        <div class="application col-md-4 col-sm-6 text-center">
+                            <p class="text-left"><?php if ($application->hasNotice()) { ?><a class="fiche pull-right" href="<?php echo str_replace('&', '&amp;', $application->getNoticeUrl()) ?>" title="Notice d&eacute;taill&eacute;e du logiciel <?php echo $application ?>"><span class="fa fa-fw fa-lg fa-info-circle"></span><span class="sr-only">Notice d&eacute;taill&eacute;e du logiciel <?php echo $application ?></span></a><?php } ?>
+                            <input type="checkbox" name="applications[]" rel="<?php echo $application ?>" value="<?php echo $application->getId() ?>" id="application_<?php echo $application->getId() ?>" /></p>
+                            <label class="btn-block" for="application_<?php echo $application->getId() ?>">
+                                <img src="logo/<?php echo $application->getLogo() ?>" alt="" class="logo" /><br />
+                                <b><?php echo $application ?></b> <small><?php echo $application->getVersion() ?></small><br />
+                                <span class="description"><?php echo $application->getDescription() ?></span>
+                            </label>
+                        </div>
           <?php
             }
           ?>
-          </div>
+                    </div>
           <?php
             $applications_list .= ob_get_contents();
             ob_end_clean();
           }
           ?>
-        </div>
-        <div id="application">
-          <?php echo $applications_list ?>
-        </div>
-      </div>
-      <div id="right">
-        <div class="share">
-          <div class="explain">
-            Partagez votre s&eacute;lection en envoyant le lien ci-dessous
-            <div class="popup border">
-              Copier-coller l'adresse et envoyer la &agrave; vos amis afin qu'ils puissent obtenir Framapack avec
-              la s&eacute;lection de logiciels que vous avez effectu&eacute;.<br /><br />
-              Vous pouvez &eacute;galement sauvegarder ce lien afin d'installer de nouveau les m&ecirc;mes logiciels lorsque vous en aurez besoin.
+                </div>
+                <!-- Tab panes -->
+                <div id="application" class="tab-content">
+                    <?php echo $applications_list ?>
+                </div>
+                <div class="clearfix"></div>
             </div>
-          </div>
-          <div class="link"><input type="text" id="share_framapack" value="" /></div>
-        </div>
-        <div class="selection">Votre s&eacute;lection : <span id="nb_apps">0 application</span></div>
-        <div id="cart"></div>
-        <div class="download">
-          <input type="submit" name="submit" value=" " />
-          <span class="text-download">T&eacute;l&eacute;charger</span>
-        </div>
-      </div>
-      </form>
-      <br class="clear" />
-    </div>
-    <div id="footer" class="border">
-      <div class="details">
-        <p>Framapack est un projet de <a href="http://framasoft.org/" title="Acc&eacute;der &agrave; l'annuaire de logiciels libres de Framasoft">Framasoft</a>. Si vous avez des questions, consultez la <a href="faq.php" title="Voir la foire aux questions de Framapack">F.A.Q</a> ou contactez nous <a href="https://contact.framasoft.org/" title="Contacter Framasoft">ici</a>.</p>
-        <p>Framapack est un logiciel libre compos&eacute; :</p>
-        <ul>
-          <li>d'un site Internet sous licence libre <a href="http://www.gnu.org/licenses/agpl-3.0.html" title="Voir le texte de la licence GNU/AGPL version 3">GNU/AGPL v3</a>.</li>
-          <li>d'un installateur sous licence libre <a href="http://www.gnu.org/licenses/gpl-2.0.html" title="Voir le texte de la licence GNU/GPL version 2">GNU/GPL v2</a>.</li>
-        </ul>
-        <p>Les sources de Framapack sont disponibles selon les termes de leur licence respective sur <a href="https://git.framasoft.org/framasoft/framapack" title="Acc&eacute;der au d&eacute;p&ocirc;t git du projet Framapack">le GitLab de Framasoft</a>.</p>
-        <p>Les pingouins qui se promènent sur le site nous viennent de <a href="http://www.le-terrier.net/pingouin/pingouin.html" title="Acc&eacute;der au site de L.L. de Mars">L.L. de Mars</a> et sont placés sous licence <a href="http://artlibre.org/licence/lal" title="Voir le texte de la licence Art Libre">Art Libre</a>.</p>
-        <p>Les images d'information et de suppression sont des &oelig;uvres de <a href="http://www.famfamfam.com/lab/icons/silk/" title="Acc&eacute;der au site de Mark James">Mark James</a> et sont plac&eacute;es sous licence <a href="http://creativecommons.org/licenses/by/2.5/" title="Voir le texte de la licence Creative Commons BY 2.5">Creative Commons Attribution</a>.</p>
-        <p>L'image de t&eacute;l&eacute;chargement est une &oelig;uvre de <a href="http://www.futurosoft.es/" title="Acc&eacute;der au site de Sergio Sanchez Lopez">Sergio Sanchez Lopez</a> et est plac&eacute;e sous licence <a href="http://www.gnu.org/licenses/gpl.html" title="Voir le texte de la licence GNU/GPL">GNU/GPL</a>.</p>
-      </div>
+                <div class="col-md-4">
+                    <h2>Qu’est-ce que Framapack ?</h2>
+                    <p>Framapack est un outil qui vous permet d’installer une collection de logiciels libres (pour Windows) de votre choix en une seule fois.</p>
+                    <ol>
+                        <li>S&eacute;lectionnez les applications</li>
+                        <li>T&eacute;l&eacute;chargez Framapack</li>
+                        <li>Executez le fichier .exe pour procéder à l’installation</li>
+                    </ol>
+                    <p>Pour en savoir plus, vous pouvez <a href="https://contact.framasoft.org/foire-aux-questions/#framapack">consulter la F.A.Q.</a></p>
+
+                    <h2>Partager</h2>
+                    <p>Vous pouvez partager votre s&eacute;lection en copiant le lien ci-dessous.</p>
+                    <div data-toggle="popover" data-placement="left" data-trigger="hover"
+                         data-html="true" id="share-popover"
+                         data-content="<p>Envoyez-le &agrave; vos amis afin qu’ils obtiennent Framapack avec les logiciels que vous avez choisis.<br/>
+                    Vous pouvez &eacute;galement sauvegarder ce lien afin d’installer de nouveau les m&ecirc;mes logiciels lorsque vous en aurez besoin.</p>">
+                        <input type="text" class="form-control" id="share_framapack" value="" aria-describedby="helpBlock" />
+                    </div>
+
+                    <h2>Télécharger</h2>
+                    <p>Votre s&eacute;lection :</p>
+                    <div id="cart"></div>
+                    <p class="download">
+                        <button type="submit" class="btn btn-lg btn-info btn-block" name="submit" value=" "><span class="fa fa-fw fa-lg fa-download"></span>T&eacute;l&eacute;charger<br /><span id="nb_apps">0 application</span></button>
+                    </p>
+                </div>
+            </div>
+            </form>
+        </main>
     </div>
 <?php include TPL_FOLDER.'/footer.php'; ?>

@@ -19,53 +19,6 @@
 var nb_selected = 0;
 
 /**
- * Affiche la catégorie sélectionnée
- *
- * @param   int   id    l'identifiant de la catégorie à afficher
- * @param   int   nb    le nombre d'application dans la catégorie à afficher
- */
-function show(id, nb)
-{
-  // Si on demande la même catégorie, on sort
-  if (current == id) {
-    return true;
-  }
-  
-  // On applique le style de la catégorie sélectionnée sur la bonne catégorie
-  $('#bloc-category-' + id).addClass('selected');
-  $('#bloc-category-' + current).removeClass('selected');
-  
-  if (nb > nb_item) {
-    // si le nombre d'application est plus important dans la catégorie demandée
-    // que dans l'ancienne catégorie, on passe la catégorie actuelle en position
-    // relative afin que la div s'agrandisse correctement et l'ancienne en position
-    // absolue (pour permettre de passer au dessus)
-    $('#category_' + id).css('position', 'relative');
-    $('#category_' + current).css('position', 'absolute').css('top', '0').css('left', '0');
-  } else {
-    // si le nombre d'application est moins important dans la catégorie demandée
-    // que dans l'ancienne catégorie, on passe la catégorie actuelle en position
-    // absolue et l'ancienne en position relative (la taille reste bonne et les
-    // catégorie se chevauche)
-    $('#category_' + current).css('position', 'relative');
-    $('#category_' + id).css('position', 'absolute').css('top', '0').css('left', '0');
-  }
-  
-  if ($.browser.msie) {
-    // Tiens c'est cette merde d'IE, on patch vu que les programmeurs
-    // de microsoft sont incapables de le faire !
-    $('#category_' + id).show();
-    $('#category_' + current).hide();
-  } else {
-    $('#category_' + current).fadeOut('slow');
-    $('#category_' + id).fadeIn('slow', function(){$(this).css('position', 'relative');});
-  }
-  
-  current = id;
-  nb_item = nb;
-}
-
-/**
  * Ajoute une application au panier
  *
  * @param   int     id    l'identifiant de l'application à ajouter au panier
@@ -73,19 +26,22 @@ function show(id, nb)
  */
 function addCart(id, name)
 {
-  updateNbApps('add');
+    updateNbApps('add');
+    
+    $('#application_'+id).parent().parent().addClass('selected');
   
-  var div = document.createElement('div');
+    $('#cart').append(
+        '<div class="application" id="cart_' + id + '" style="display:none;">' +
+            name +
+            '<a href="javascript:void(0)" title="Supprimer '+name+' de la liste" onclick="removeCart(' + id +', true);">'+
+                '<span class="fa fa-fw fa-remove text-danger"></span><span class="sr-only">Supprimer '+name+' de la liste</span>'+
+            '</a>'+
+        '</div>'
+    );
   
-  div.setAttribute('class', 'application');
-  div.setAttribute('id', 'cart_' + id);
-  div.setAttribute('style', 'display:none;');
-  div.innerHTML = name + '<img src="images/delete.png" class="delete" onclick="removeCart(' + id +', true);" />';
+    $('#cart_' + id).fadeIn('slow');
   
-  document.getElementById('cart').appendChild(div);
-  $('#cart_' + id).fadeIn('slow');
-  
-  buildLink();
+    buildLink();
 }
 
 /**
@@ -95,16 +51,15 @@ function addCart(id, name)
  * @param   bool        True s'il faut désélectionner la checkbox de l'application
  */
 function removeCart(id, uncheck)
-{
-  // On supprime l'attribut onclick pour eviter de faire bugger l'application
-  $('#cart_' + id + ' > img').removeAttr('onclick');
+{  
+    $('#application_'+id).parent().parent().removeClass('selected');
+    
+    if (uncheck == true) {
+        $('#application_' + id).removeAttr('checked');
+    }
+    $('#cart_' + id).fadeOut('slow', function(){document.getElementById('cart').removeChild(document.getElementById('cart_' + id));updateNbApps('remove');});
   
-  if (uncheck == true) {
-    $('#application_' + id).removeAttr('checked');
-  }
-  $('#cart_' + id).fadeOut('slow', function(){document.getElementById('cart').removeChild(document.getElementById('cart_' + id));updateNbApps('remove');});
-  
-  buildLink();
+    buildLink();
 }
 
 /**
@@ -114,123 +69,100 @@ function removeCart(id, uncheck)
  */
 function updateNbApps(action)
 {
-  if (action == 'add') {
-    nb_selected++;
-  } else if (action == 'remove') {
-    nb_selected--;
-  }
+    if (action == 'add') {
+        nb_selected++;
+    } else if (action == 'remove') {
+        nb_selected--;
+    }
   
-  if (nb_selected > 0) {
-    $('#cart').addClass('border');
-  } else {
-    $('#cart').removeClass('border');
-  }
+    if (nb_selected > 0) {
+        $('#cart').addClass('well');
+    } else {
+        $('#cart').removeClass('well');
+    }
   
-  if (nb_selected > 1) {
-    text_selection = nb_selected + ' applications';
-  } else {
-    text_selection = nb_selected + ' application';
-  }
+    if (nb_selected > 1) {
+        text_selection = nb_selected + ' applications';
+    } else {
+        text_selection = nb_selected + ' application';
+    }
   
-  $('#nb_apps').text(text_selection);
+    $('#nb_apps').text(text_selection);
 }
-
-
-/**
- * Fonction appellé avec le slot sur la checkbox
- * 
- * @param   DOMElement  checkbox    L'element DOM correspondant à la checkbox
- */
-function clickCheckbox(checkbox)
-{
-  var id = $(checkbox).val();
-  if ($(checkbox).is(':checked')) {
-    addCart(id, $(checkbox).attr('rel'));
-  } else {
-    removeCart(id);
-  }
-}
-
 
 /**
  * Fonction permettant de créer le lien de partage
  */
 function buildLink()
 {
-  var link = '';
-  var i = 0;
+    var link = '';
+    var i = 0;
   
-  $(':checkbox:checked').each(function() {
-    if (i > 0) {
-      link += '-';
+    $(':checkbox:checked').each(function() {
+        if (i > 0) {
+            link += '-';
+        }
+        link += $(this).val();
+        i++;
+    });
+  
+    if (link != '') {
+        link = url_framapack + '?share=' + link;
     }
-    link += $(this).val();
-    i++;
-  });
   
-  if (link != '') {
-    link = url_framapack + '?share=' + link;
-  }
-  
-  $('#share_framapack').val(link);
+    $('#share_framapack').val(link);
 }
 
 
 //Fonctions executées lorsque la page HTML est chargée entièrement
 $(document).ready(function(){
-  var click_in_checkbox = false;
-  // Ajoute un slot sur les checkbox afin de controler les applications sélectionnées
-  $(":checkbox").click(function(){
-    click_in_checkbox = true;
-  });
-  
-  // Ajoute un slot sur les liens vers les notices
-  //$("a.fiche").fancybox();
-  //$(".iframe").colorbox({iframe:true, width:"500px", height:"400px", innerWidth:"500px",initialWidth:"500px"});
-  $(".iframe").colorbox({iframe:true,  width: "580", 
-      height: "380px", transition: "elastic", scrolling:true, close:"fermer",
-      
-      onComplete: function () 
-          { 
-	        //$("#cboxLoadedContent").addClass("musicBgr"); 
-		$("#colorbox iframe").css( 
-		 { 
-		     'width': '580px', 
-		     'height': '380px', 
-		     'margin': '0px auto',
-		     'background-color': '#fff'
-		  }); 
-	  } 
-				       
-       }); 
- 
-  
-  // Cache les blocs des catégories qui ne sont pas sélectionnées
-  $('.list-applications').map(function(){
-    if ($(this).attr('id') != 'category_' + current) {
-      $(this).hide();
-    }
-  });
-  
-  // Ajoute un slot sur les div des applications afin de controler les applications sélectionnées
-  $('.application:not(.information,.checkbox)').click(function(){
-    var checkbox = $(this).children('.checkbox').children('input').get(0);
-    if (click_in_checkbox == false) {
-      checkbox.checked = !checkbox.checked;
-    } else {
-      click_in_checkbox = false;
-    }
-    clickCheckbox(checkbox);
-  });
-  
-  // Ajoute un slot sur le click dans le input de l'adresse de partage afin de sélectionner le texte
-  $('#share_framapack').click(function(){$(this).select();})
-  
-  // Ajoute un slot permettant l'affichage d'une explication pour le lien de partage
-  $(".share").hover(function() {
-    $(this).find(".popup").stop(true, true).animate({opacity: "show", left: "-260"}, "fast");
-  }, function() {
-    $(this).find(".popup").animate({opacity: "hide", left: "-280"}, "fast");
-  });
-
+    $('input:checkbox').removeAttr('checked'); // suppression des checkbox mémorisées par le navigateur
+    $('#share_framapack').val('');             // et du lien de partage
+    
+    // Modale pour afficher la fiche du logiciel
+    $('a.fiche').on('click', function(){
+        var modalTitle = $(this).attr('title');
+        var modalIframe = $(this).attr('href');
+        $('#modal-pack').remove();
+        $('main').after(
+            '<div class="modal fade" id="modal-pack" aria-labelledby="modal-packLabel" >'+
+                '<div class="modal-dialog modal-lg">'+
+                    '<div class="modal-content">'+
+                        '<div class="modal-header">'+
+                            '<button type="button" class="close" data-dismiss="modal" title="Fermer"><span aria-hidden="true">&times;</span><span class="sr-only">Fermer</span></button>'+
+                            '<h1 id="modal-packLabel">'+modalTitle+'</h1>'+
+                        '</div>'+
+                        '<div class="modal-body">'+
+                            '<iframe frameborder="0" src="'+modalIframe+'" ></iframe>'+
+                        '</div>'+
+                        '<div class="modal-footer">'+
+                            '<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>'+
+            '</div>'
+        );
+        $('#modal-pack').modal('show');
+        $('#modal-pack iframe').css({
+            'width':$('#modal-pack .modal-dialog').width()-25,
+            'height':($(window).height()-250)
+        });
+        return false;
+    });
+    
+    // Popover sur le lien de partage
+    $('#share-popover').popover();
+    
+    // Ajout/Suppression des logiciels de la liste et du compteur
+    $('input:checkbox').change(function() {
+        var checkbox = $(this);
+        var id = $(checkbox).val();
+        if ($(checkbox).is(':checked')) {
+            addCart(id, $(checkbox).attr('rel'));
+        } else {
+            removeCart(id);
+        }
+    });
+    // Ajoute un slot sur le click dans le input de l'adresse de partage afin de sélectionner le texte
+    $('#share_framapack').click(function(){$(this).select();})
 });

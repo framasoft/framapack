@@ -6,14 +6,12 @@
     <title><?php echo $title ?></title>
     <link href="favicon.ico" type="image/x-icon" rel="shortcut icon" />
     <link rel="alternate" type="application/rss+xml" title="Flux RSS - Framapack" href="http://www.framapack.org/rss.php" />
+    <link rel="stylesheet" type="text/css" media="all" href="static/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="static/font-awesome/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="<?php echo $style ?>.css?3" />
 <?php if (isset($js) && $js === true) { ?>
-    <!-- <link rel="stylesheet" type="text/css" media="screen" href="js/fancybox/jquery.fancybox-1.3.4.css" /> -->
-    <link rel="stylesheet" type="text/css" media="screen" href="js/colorbox.css" />
-    <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
-    <!-- <script type="text/javascript" src="js/fancybox/jquery.fancybox-1.3.4.pack.js"></script> -->
-    <script type="text/javascript" src="js/jquery.colorbox-min.js"></script>
-
+    <script type="text/javascript" src="static/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="static/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="functions.js?2"></script>
 <?php } ?>
   </head>
@@ -36,4 +34,3 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see http://www.gnu.org/licenses/.
     -->
-<?php //include_once dirname(__FILE__).'/../framanav/nav.php'; ?>
