@@ -1,0 +1,858 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Framapack Presentation</title>
+
+        <meta name="description" content="Présentation de Framapack">
+        <meta content="Pyves" name="author"></meta>
+        <meta content="Artworks from Geektionnerd of Simon 'Gee' Giraudot - http://geektionnerd.net/" name="credits"></meta>
+        <meta content="CC-BY-SA - https://creativecommons.org/licenses/by-sa/2.0/" name="licence"></meta>
+        <meta name="version" content="1">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+        <!-- Code syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+
+        <style>
+            @font-face{
+                font-family: Domestic_Manners;
+                src: url('font/Domestic_Manners.ttf') format('truetype');
+            }
+
+            section{
+                background-color: white;
+            }
+
+            section p{
+                font-family: Domestic_Manners, sans-serif !important;
+                color: black;
+                position: absolute;
+            }
+
+            /* Specifique IE qui affiche mal les paragraphes par défaut: on force pour cacher quand non visible */
+            section span.fragment:not(.visible) p {
+                display: none;
+            }
+            /* Fin Specifique IE */
+
+
+            section img{
+                box-shadow: 0px 0px 0px rgba(0, 0, 0, 0) !important;
+                border: none !important;
+            }
+
+            section img:not(.img-fond){
+                position: absolute;
+                background-color: rgba(0,0,0,0);
+            }
+
+            .lang-button {
+                position: absolute;
+                top: 0%;
+                right: 0%;
+                min-height: 5%;
+                width: 18%;
+                background-color: rgba(0,0,0,0);
+                border: none;
+                filter: contrast(0%) brightness(150%);
+                z-index: 999;
+                font-family: Domestic_Manners, sans-serif !important;
+                font-size: 0.45em;
+                padding-bottom: 1.5em;
+            }
+
+            .lang-button p{
+                width: 100%;
+                text-align: center;
+                margin: 0;
+            }
+
+            .lang-button:hover {
+                filter: none;
+                background-color:#E6EFC2;
+                border:1px solid #C6D880;
+                color:#529214;
+            }
+
+
+            /* rendu logo framapack */
+            .framapack {
+                position: absolute;
+                font-family: "DejaVu Sans",Verdana,Geneva,sans-serif !important;
+                font-weight: bold !important;
+                font-size: 64px !important;
+                text-transform: none !important;
+            }
+
+            .frama {
+                color: #6A5687;
+            }
+
+            .pack {
+                color: #0C5B7A;
+            }
+
+            /* Finition: toutes les animations */
+            .present .delay05, .current-fragment .delay05 { animation: appear05 0.5s 1 linear; }
+            .present .delay1,  .current-fragment .delay1  { animation: appear1 1s 1 linear; }
+            .present .delay15, .current-fragment .delay15 { animation: appear15 1.5s 1 linear; }
+            .present .delay2,  .current-fragment .delay2  { animation: appear2 2s 1 linear; }
+            .present .delay25, .current-fragment .delay25 { animation: appear2 2.5s 1 linear; }
+            .present .delay3,  .current-fragment .delay3  { animation: appear3 3s 1 linear; }
+
+            @keyframes appear05 {
+                0% {opacity: 0;}
+                100% {opacity: 1;}
+            }
+            @keyframes appear1 {
+                0% {opacity: 0;}
+                50% {opacity: 0;}
+                100% {opacity: 1;}
+            }
+            @keyframes appear15 {
+                0% {opacity: 0;}
+                66.666% {opacity: 0;}
+                100% {opacity: 1;}
+            }
+            @keyframes appear2 {
+                0% {opacity: 0;}
+                75% {opacity: 0;}
+                100% {opacity: 1;}
+            }
+            @keyframes appear3 {
+                0% {opacity: 0;}
+                83.333% {opacity: 0;}
+                100% {opacity: 1;}
+            }
+
+            section.present .star15 { animation: twinkle 1.5s infinite linear; }
+            section.present .star2  { animation: twinkle 2s infinite linear; }
+            section.present .star25 { animation: twinkle 2.5s infinite linear; }
+
+            @keyframes twinkle {
+                0% {opacity: 1;}
+                50% {opacity: 0;}
+                100% {opacity: 1;}
+            }
+
+            section.present .shake { animation: shake 3s infinite linear; }
+
+            @keyframes shake {
+                0% {transform: rotate(0deg);}
+                3% {transform: rotate(2deg);}
+                6% {transform: rotate(-2deg);}
+                9% {transform: rotate(0deg);}
+                100% {transform: rotate(0deg);}
+            }
+
+            section.present .shake-big { animation: shake-big 2s infinite linear; }
+
+            @keyframes shake-big {
+                0% {transform: rotate(0deg);}
+                3% {transform: rotate(5deg);}
+                6% {transform: rotate(-5deg);}
+                9% {transform: rotate(0deg);}
+                100% {transform: rotate(0deg);}
+            }
+
+            @keyframes fadeIn{
+                0%{opacity: 0;}
+                50%{opacity: 0.5;}
+                100%{opacity: 1;}
+            }
+
+
+            .stamped {
+                transform: rotate(-30deg);
+                animation: stamping 1.3s linear 0s 1;
+            }
+            @keyframes stamping{
+                0%{transform: scale(10); opacity: 0;}
+                80%{transform: scale(10); opacity: 0;}
+                100%{transform: scale(1); opacity: 1;}
+            }
+
+            .swing {animation: swinging 0.5s infinite linear;}
+            @keyframes swinging{
+                25%{transform: translate(0,2px);}
+                75%{transform: translate(0,-2px);}
+            }
+
+            .orbit-pos{top: 57%; left: 48%;}
+            .orbit0  {opacity:0; animation: orbiting 16s linear infinite;}
+            .orbit1  {opacity:0; animation: orbiting 16s linear 0.5s infinite;}
+            .orbit2  {opacity:0; animation: orbiting 16s linear 1.0s infinite;}
+            .orbit3  {opacity:0; animation: orbiting 16s linear 1.5s infinite;}
+            .orbit4  {opacity:0; animation: orbiting 16s linear 2.0s infinite;}
+            .orbit5  {opacity:0; animation: orbiting 16s linear 2.5s infinite;}
+            .orbit6  {opacity:0; animation: orbiting 16s linear 3.0s infinite;}
+            .orbit7  {opacity:0; animation: orbiting 16s linear 3.5s infinite;}
+            .orbit8  {opacity:0; animation: orbiting 16s linear 4.0s infinite;}
+            .orbit9  {opacity:0; animation: orbiting 16s linear 4.5s infinite;}
+            .orbit10 {opacity:0; animation: orbiting 16s linear 5.0s infinite;}
+            .orbit11 {opacity:0; animation: orbiting 16s linear 5.5s infinite;}
+            .orbit12 {opacity:0; animation: orbiting 16s linear 6.0s infinite;}
+            .orbit13 {opacity:0; animation: orbiting 16s linear 6.5s infinite;}
+            .orbit14 {opacity:0; animation: orbiting 16s linear 7.0s infinite;}
+            .orbit15 {opacity:0; animation: orbiting 16s linear 7.5s infinite;}
+            .orbit16 {opacity:0; animation: orbiting 16s linear 8.0s infinite;}
+            .orbit17 {opacity:0; animation: orbiting 16s linear 8.5s infinite;}
+            .orbit18 {opacity:0; animation: orbiting 16s linear 9.0s infinite;}
+            .orbit19 {opacity:0; animation: orbiting 16s linear 9.5s infinite;}
+            .orbit20 {opacity:0; animation: orbiting 16s linear 10.0s infinite;}
+            .orbit21 {opacity:0; animation: orbiting 16s linear 10.5s infinite;}
+            .orbit22 {opacity:0; animation: orbiting 16s linear 11.0s infinite;}
+            .orbit23 {opacity:0; animation: orbiting 16s linear 11.5s infinite;}
+            .orbit24 {opacity:0; animation: orbiting 16s linear 12.0s infinite;}
+            .orbit25 {opacity:0; animation: orbiting 16s linear 12.5s infinite;}
+            .orbit26 {opacity:0; animation: orbiting 16s linear 13.0s infinite;}
+            .orbit27 {opacity:0; animation: orbiting 16s linear 13.5s infinite;}
+            .orbit28 {opacity:0; animation: orbiting 16s linear 14.0s infinite;}
+            .orbit29 {opacity:0; animation: orbiting 16s linear 14.5s infinite;}
+            .orbit30 {opacity:0; animation: orbiting 16s linear 15.0s infinite;}
+            .orbit31 {opacity:0; animation: orbiting 16s linear 15.5s infinite;}
+            @keyframes orbiting {
+                0%   { transform: rotate(0deg) translateX(150px) rotate(0deg); opacity:0.6;}
+                100% { transform: rotate(360deg) translateX(150px) rotate(-360deg); opacity:0.6;}
+            }
+
+            .glow{animation: glowing 5s infinite;}
+            @keyframes glowing {
+                50% {box-shadow: 0 0 50px #0F0;}
+            }
+
+            .shiver0{animation: shivering 1s linear infinite;}
+            .shiver2{animation: shivering 1s linear 0.2s infinite;}
+            .shiver4{animation: shivering 1s linear 0.4s infinite;}
+            @keyframes shivering {
+                2.5% {transform: translateX(2px)}
+                5% {transform: translateX(-2px)}
+                7.5% {transform: translateX(2px)}
+                10% {transform: translateX(-2px)}
+                12.5% {transform: translateX(2px)}
+            }
+
+            .jump0{animation: rjumping 1.5s linear infinite;}
+            .jump2{animation: ljumping 2s linear 0.2s infinite;}
+            .jump4{animation: ujumping 0.5s linear 0.4s infinite;}
+            @keyframes rjumping {
+                2% {transform: translateY(-2px)}
+                10% {transform: translateX(5px)}
+                18% {transform: translateX(-1px)}
+                20% {transform: translateX(0px)}
+            }
+            @keyframes ljumping {
+                2% {transform: translateY(-2px)}
+                10% {transform: translateX(-5px)}
+                18% {transform: translateX(1px)}
+                20% {transform: translateX(0px)}
+            }
+            @keyframes ujumping {
+                2% {transform: translateY(-2px)}
+                10% {transform: translateY(3px)}
+                18% {transform: translateY(0px)}
+                20% {transform: translateX(0px)}
+            }
+
+        </style>
+
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section>
+                    <!-- Partie statique -->
+                    <img data-src="img/fond_rose.png" class="img-fond"/>
+                    <button type="button" onclick="language_switcher();" class="lang-button">
+                        <p class="text-fr">(english version)</p>
+                        <p class="text-en">(version française)</p>
+                    </button>
+
+                    <!-- Partie dynamique -->
+                    <img data-src="img/presentateur_sourire_coin.png" style="bottom: 2%; left: 25%; height: 53%;"/>
+                    <img data-src="img/presentatrice_amusee.png" style="bottom: 2%; right: 25%; height: 60%;"/>
+
+
+                    <img data-src="img/bulle4.png" style="top: 1%; left: 17%; transform: scaleX(-1);"/>
+                    <p class="text-fr" style="font-size: 0.7em; width: 40%; top: 3%; left: 10%;">Bonjour, et bienvenue cher public à notre nouvel épisode de télé-<em>achat</em>-rgement! <br/>Bonjour Marise!</p>
+                    <p class="text-en" style="font-size: 0.7em; width: 35%; top: 3%; left: 15%;">Hello dear viewers and welcome to a new session of "duty" free shopping! <br/>Hello Marise!</p>
+
+                    <img data-src="img/bulle5.png" style="top: 20%; right: 12%; width: 29%; height: 15%;"/>
+                    <p class="text-fr" style="font-size: 0.7em; width: 32%; top: 21%; right: 8%;">Bonjour Pierre! <span style="font-size: 0.65em;">Quel humour!</span></p>
+                    <p class="text-en" style="font-size: 0.7em; width: 32%; top: 21%; right: 8%;">Hello Pierre! <span style="font-size: 0.65em;">Funny as always!</span></p>
+
+                </section>
+
+                <section>
+                    <!-- Partie statique-->
+                    <img data-src="img/fond_sombre.png" class="img-fond"/>
+                    <button type="button" onclick="language_switcher();" class="lang-button">
+                        <p class="text-fr">(english version)</p>
+                        <p class="text-en">(version française)</p>
+                    </button>
+
+                    <img data-src="img/presentateur_souriant_tete.png" style="top: 25%; left: 3%; height: 15%;"/>
+                    <img data-src="img/bulle4.png" style="top: -11%; left: 0%;"/>
+
+                    <!-- Partie dynamique  visible current-fragment-->
+                    <span class="fragment current-visible display-fragment-first">
+                        <p class="text-fr" style="font-size: 0.7em; width: 90%; top: 1%; left: 3%;">Aujourd'hui, je vous présente un produit exceptionnel. Je suis sûr que vous avez déjà dû installer des logiciels sur un ordinateur.</p>
+                        <p class="text-en" style="font-size: 0.7em; width: 90%; top: 1%; left: 6%; text-align: left;">Today I have something amazing for you! </br>I'm sure you already have tried to install computer software.</p>
+                    </span>
+                    <span class="fragment current-visible">
+                        <p class="text-fr" style="font-size: 0.7em; width: 25%; top: 4%; left: 1%;">C'est long...</p>
+                        <p class="text-en" style="font-size: 0.7em; width: 25%; top: 4%; left: 1%;">It takes time...</p>
+
+                        <img data-src="img/bulle_pensee.png" style="width: 45%; height: 17%; bottom: 40%; right: 31%;"/>
+                        <p class="text-fr" style="font-size: 0.6em; width: 32%; bottom: 43%; right: 41%;">Bon... encore 10 machines à installer, où ai-je mis les CDs des logiciels...</p>
+                        <p class="text-en" style="font-size: 0.6em; width: 32%; bottom: 43%; right: 41%;">Well... still 10 computers to install, where are my damn software CDs...</p>
+                        <img data-src="img/informaticien_ronchon.png" style="bottom: 2%; right: 8%;"/>
+                    </span>
+
+                    <span class="fragment current-visible">
+                        <p class="text-fr" style="font-size: 0.7em; width: 35%; top: 4%; left: 3%;">Ca peut être compliqué...</p>
+                        <p class="text-en" style="font-size: 0.7em; width: 35%; top: 4%; left: 3%;">It can be complicated...</p>
+
+                        <p class="text-fr" style="font-size: 0.6em; width: 45%; bottom: 65%; right: 5%;">Allo fiston! Aide moi&nbsp;: Je veux ouvrir la vidéo que tonton m'a envoyée, mais il me met une erreur...</p>
+                        <p class="text-en" style="font-size: 0.6em; width: 45%; bottom: 65%; right: 5%;">Hello son! Please help me&nbsp;: I want to see the video your uncle sent us, but i got an error...</p>
+
+                        <p class="text-fr" style="font-size: 0.4em; width: 45%; bottom: 60%; right: 4%;">En plus il ne parle pas français, je n'y comprends rien...</p>
+                        <p class="text-en" style="font-size: 0.4em; width: 45%; bottom: 60%; right: 4%;">It's not really understandable...</p>
+
+                        <img data-src="img/bulle_pensee2.png" style="width: 45%; height: 26%; bottom: 29%; right: 38%;"/>
+                        <p class="text-fr" style="font-size: 0.5em; width: 45%; bottom: 50%; right: 41%;">Installe VLC, c'est une vidéo divX... </p>
+                        <p class="text-en" style="font-size: 0.5em; width: 30%; bottom: 47%; right: 49%;">You have to install VLC, it's a divX encoded video... </p>
+
+                        <p class="text-fr" style="font-size: 0.6em; width: 47%; bottom: 30%; left: 4%;">Reste poli hein! Ce n'est pas une </br>vidéo X! Comment j'installe la vielle C?</p>
+                        <p class="text-en" style="font-size: 0.6em; width: 47%; bottom: 30%; left: 4%;">What are you talking about? It's not X rated video! And why should I install in Chelsea!?</p>
+
+                        <img data-src="img/bulle_pensee3.png" style="width: 63%; bottom: 10%; right: 37%;"/>
+                        <p class="text-fr" style="font-size: 0.5em; width: 48%; bottom: 10%; left: 1%;">Alors... tu vas sur leur site... mmh d'abord tu cliques sur la grosse icône INTERNET et tu tapes l'URL... Bon laisse tomber, je passe te voir ce weekend.</p>
+                        <p class="text-en" style="font-size: 0.5em; width: 48%; bottom: 6%; left: 1%;">Okay... First you go to VLC website... wait no, first you click on the big INTERNET icon and you enter the following URL... Okay, just wait I'm coming this weekend to do it.</p>
+                        <img class="text-fr" data-src="img/smiley_triste.png" style="height: 3%; bottom: 10.8%; left: 48%;"/>
+                        <img class="text-en" data-src="img/smiley_triste.png" style="height: 3%; bottom: 6%; left: 34%;"/>
+
+                        <img data-src="img/grand-mere_ordinateur_telephone.png" style="height:45%; bottom: 0%; right: 0%;"/>
+
+                    </span>
+
+                    <span class="fragment current-visible">
+                        <p class="text-fr" style="font-size: 0.7em; width: 30%; top: 4%; left: 4%;">...Voire problématique!</p>
+                        <p class="text-en" style="font-size: 0.7em; width: 40%; top: 4%; left: 4%;">...It can even be difficult!</p>
+
+                        <img data-src="img/bulle7.png" style="width: 60%; height: 30%; top: 28%; left: 20%;"/>
+                        <p class="text-fr" style="font-size: 0.6em; width: 55%; bottom: 54%; left: 23%;">Pour votre exposé, vous aurez besoin de faire des graphiques. Je vous conseille d'utiliser un tableur et un traitement de texte.</p>
+                        <p class="text-en" style="font-size: 0.6em; width: 55%; bottom: 54%; left: 23%;">You will need to make your report with a spreadsheet software and a word processor.</p>
+
+                        <img data-src="img/bulle_groupe.png" style="width: 10%; height: 35%; bottom: 18%; right: 0%;"/>
+                        <p class="text-fr" style="font-size: 0.6em; width: 50%; bottom: 45%; right: 5%;">M'sieur, quel tableur on peut utiliser?</p>
+                        <p class="text-en" style="font-size: 0.6em; width: 50%; bottom: 45%; right: 5%;">Which software can we use, professor?</p>
+
+                        <p class="text-fr" style="font-size: 0.4em; width: 40%; bottom: 39%; right: 14%;">Mon papa il a piraté les logiciels de Migrosoft!</p>
+                        <p class="text-en" style="font-size: 0.4em; width: 45%; bottom: 39%; right: 14%;">My daddy is awesome, he has pirated the Migrosoft suite!</p>
+
+                        <p class="text-fr" style="font-size: 0.6em; width: 50%; bottom: 27%; right: 5%;">Et chez nous on a une connexion super lente m'sieur, comment je fais?</p>
+                        <p class="text-en" style="font-size: 0.6em; width: 50%; bottom: 27%; right: 5%;">Professor, at home internet is very slow, how do I do?</p>
+
+                        <p class="text-fr" style="font-size: 0.4em; width: 32%; bottom: 21%; right: 6%;">La chance, toi tu as une connexion...</p>
+                        <p class="text-en" style="font-size: 0.4em; width: 32%; bottom: 21%; right: 6%;">At least YOU have a connection...</p>
+
+                        <img data-src="img/bulle3.png" style="width: 45%; height: 17%; bottom: 5%; left: 35%;"/>
+                        <p class="text-fr" style="font-size: 0.6em; width: 40%; bottom: 10%; left: 37%;">Bon... ça ne va pas être facile...</p>
+                        <p class="text-en" style="font-size: 0.6em; width: 40%; bottom: 10%; left: 37%;">Well... This is annoying...</p>
+
+                        <img data-src="img/professeur.png" style="height:45%; bottom: 0%; left: 0%;"/>
+                    </span>
+                </section>
+
+                <section>
+                    <!-- Partie statique -->
+                    <img data-src="img/fond_rose.png" class="img-fond"/>
+                    <button type="button" onclick="language_switcher();" class="lang-button">
+                        <p class="text-fr">(english version)</p>
+                        <p class="text-en">(version française)</p>
+                    </button>
+
+                    <!-- Partie dynamique -->
+                    <img data-src="img/presentateur_pipe.png" style="bottom: 0%; left: 27%; height: 35%;"/>
+                    <img data-src="img/presentatrice_etonnee.png" style="bottom: 0%; right: 25%; height: 42%;"/>
+
+
+                    <img data-src="img/bulle1.png" style="width: 40%; bottom: 29%; left: 1%; transform: scaleX(-1);"/>
+                    <p class="text-fr" style="font-size: 0.7em; width: 40%; bottom: 39%; left: 2%;">J'ai un remède pour vous!</p>
+                    <p class="text-en" style="font-size: 0.7em; width: 40%; bottom: 39%; left: 2%;">I have the solution for You!</p>
+
+                    <img data-src="img/bulle5.png" style="bottom: 38%; right: 10%; width: 29%; height: 15%;"/>
+                    <p class="text-fr" style="font-size: 0.6em; width: 32%; bottom: 44%; right: 4%;">Qu'est ce que c'est Pierre? Dites-moi, je n'en peux plus!</p>
+                    <p class="text-en" style="font-size: 0.6em; width: 32%; bottom: 44%; right: 4%;">What is it Pierre? Tell me, I can't wait!</p>
+
+                    <span class="fragment fragment-tampon">
+                        <img data-src="img/etoile1.png" class="star15" style="top: 2%; left: 20%;"/>
+                        <img data-src="img/etoile2.png" class="star2" style="top: 13%; left: 20%;"/>
+                        <img data-src="img/etoile3.png" class="star25" style="top: 8%; left: 28%;"/>
+                        <a href="https://framapack.org/" target="_blank" style="position: absolute; top: 15%; left: 30%;">
+                            <h1 class="framapack" style="animation: fadeIn 0.5s linear 0.5s backwards, shake-big 2s infinite linear;">
+                                <span class="frama">Frama</span><span class="pack">pack</span>
+                            </h1>
+                        </a>
+                    <span class="to-stamp" style="position: absolute; top: 18%; right: 4%;height: 23%;">
+                        <img data-src="img/tada.png" style="position: relative;"/>
+                        <p class="text-fr " style="position: relative; font-size: 0.65em; top: -90%;">Vu sur le web!</p>
+                        <p class="text-en " style="position: relative; font-size: 0.45em; top: -119%;">As seen on the web!</p>
+                    </span>
+                    </span>
+
+                </section>
+
+                <section>
+                    <!-- Partie statique -->
+                    <img data-src="img/fond.png" class="img-fond"/>
+                    <button type="button" onclick="language_switcher();" class="lang-button">
+                        <p class="text-fr">(english version)</p>
+                        <p class="text-en">(version française)</p>
+                    </button>
+
+                    <!-- Partie dynamique -->
+
+                    <p class="text-fr" style="font-size: 0.7em; width: 90%; top: 5%; left: 2%;">Dans les 1ers âges, les seigneurs du logiciel libre bataillaient pour attirer des utilisateurs, face au tout-puissant Privateur...</p>
+                    <p class="text-en" style="font-size: 0.7em; width: 90%; top: 5%; left: 2%;">In the early ages, the lords of free software were fighting against the all-mighty Privator to gather users...</p>
+
+                    <span class="fragment current-visible">
+                        <img style="top: 20%; left: 1%; width: 50%;" data-src="img/oeil_sauron.png"/>
+                        <p class="text-fr" style="font-size: 0.7em; width: 50%; top: 25%; left: 20%; transform: rotate(5deg);">CACHEZ CE CODE QUE JE NE SAURAIS VOIR!</p>
+                        <p class="text-en" style="font-size: 0.7em; width: 50%; top: 25%; left: 24%; transform: rotate(5deg);">COVER UP THAT CODE, WHICH I CAN'T ENDURE TO LOOK ON! </p>
+
+                        <img class="jump4" style="bottom: 31%; right: 24%;" data-src="img/icons/7-zip.png"/>
+                        <img class="shiver0" style="bottom: 10%; right: 23%;" data-src="img/icons/abiword.png"/>
+                        <img class="shiver2" style="bottom: 13%; right: 29%;" data-src="img/icons/audacity.png"/>
+                        <img class="jump2" style="bottom: 27.5%; right: 36%;" data-src="img/icons/avidemux.png"/>
+                        <img class="shiver4" style="bottom: 18%; right: 35%;" data-src="img/icons/blender.png"/>
+                        <img class="shiver0" style="bottom: 21%; right: 47%;" data-src="img/icons/calibre.png"/>
+                        <img class="jump4" style="bottom: 26%; right: 45%;" data-src="img/icons/celestia.png"/>
+                        <img class="shiver4" style="bottom: 25%; right: 22%;" data-src="img/icons/clamsentinel.png"/>
+                        <img class="jump4" style="bottom: 18%; right: 43%;" data-src="img/icons/codeblocks.png"/>
+                        <img class="shiver2" style="bottom: 7%; right: 36%;"  data-src="img/icons/deluge.png"/>
+                        <img class="jump4" style="bottom: 11%; right: 37%;" data-src="img/icons/dia.png"/>
+                        <img class="jump0" style="bottom: 21%; right: 25%;" data-src="img/icons/filezilla.png"/>
+                        <img class="shiver4" style="bottom: 5%; right: 40%;"  data-src="img/icons/firefox.png"/>
+                        <img class="jump4" style="bottom: 13%; right: 33%;" data-src="img/icons/freeplane.png"/>
+                        <img class="shiver0" style="bottom: 20%; right: 29%;" data-src="img/icons/gajim.png"/>
+                        <img class="jump2" style="bottom: 13%; right: 45%;" data-src="img/icons/gimp.png"/>
+                        <img class="jump2" style="bottom: 24%; right: 32%;" data-src="img/icons/gnumeric.png"/>
+                        <img class="shiver4" style="bottom: 23%; right: 41.5%;" data-src="img/icons/inkscape.png"/>
+                        <img class="shiver2" style="bottom: 15%; right: 39%;" data-src="img/icons/komodo.png"/>
+                        <img class="jump4" style="bottom: 22%; right: 38%;" data-src="img/icons/launchy.png"/>
+                        <img class="jump2" style="bottom: 26%; right: 27%;" data-src="img/icons/libreoffice.png"/>
+                        <img class="shiver2" style="bottom: 30%; right: 31%;" data-src="img/icons/nightingale.png"/>
+                        <img class="jump4" style="bottom: 8%; right: 46%;"  data-src="img/icons/notepad.png"/>
+                        <img class="jump0" style="bottom: 10%; right: 42%;" data-src="img/icons/opensankor.png"/>
+                        <img class="shiver0" style="bottom: 17%; right: 22%;" data-src="img/icons/pdfcreator.png"/>
+                        <img class="shiver4" style="bottom: 28%; right: 40%;" data-src="img/icons/pidgin.png"/>
+                        <img class="jump2" style="bottom: 14%; right: 18%;" data-src="img/icons/putty.png"/>
+                        <img class="jump0" style="bottom: 9%; right: 26%;"  data-src="img/icons/scratch.png"/>
+                        <img class="shiver2" style="bottom: 8%; right: 20%;"  data-src="img/icons/scribus.png"/>
+                        <img class="jump4" style="bottom: 30%; right: 20%;" data-src="img/icons/thunderbird.png"/>
+                        <img class="shiver4" style="bottom: 20%; right: 20%;" data-src="img/icons/vlc.png"/>
+                        <img class="jump4" style="bottom: 6%; right: 30%;"  data-src="img/icons/windirstat.png"/>
+                    </span>
+
+                    <span class="fragment fade-in" style="position: absolute; left: 0; height: 100%; width: 100%; background-color: white;">
+                        <p class="text-fr" style="font-size: 0.7em; width: 90%; top: 5%; left: 2%;">Alors Framasoft, dans son désir de les unir contre la menace, créa le Framapack unique...</p>
+                        <p class="text-en" style="font-size: 0.7em; width: 90%; top: 5%; left: 2%;">Then Framasoft came to unite them against the threat, and created the One Framapack...</p>
+
+                        <!-- Span juste pour le glow: ca ne marche pas directement avec l'img, et en plus leffet de transparence ne marcherait pas.-->
+                        <span style="position: absolute; width: 2%; height: 6%; left: 49.5%; top: 57.5%;" class="glow" ></span>
+                        <img class="glow" style="width: 10%; left: 45%; top: 53%;" data-src="img/framasoft.png"/>
+
+                        <img class="orbit-pos orbit0"  data-src="img/icons/vlc.png"/>
+                        <img class="orbit-pos orbit1"  data-src="img/icons/blender.png"/>
+                        <img class="orbit-pos orbit2"  data-src="img/icons/launchy.png"/>
+                        <img class="orbit-pos orbit3"  data-src="img/icons/firefox.png"/>
+                        <img class="orbit-pos orbit4"  data-src="img/icons/inkscape.png"/>
+                        <img class="orbit-pos orbit5"  data-src="img/icons/filezilla.png"/>
+                        <img class="orbit-pos orbit6"  data-src="img/icons/pdfcreator.png"/>
+                        <img class="orbit-pos orbit7"  data-src="img/icons/komodo.png"/>
+                        <img class="orbit-pos orbit8"  data-src="img/icons/audacity.png"/>
+                        <img class="orbit-pos orbit9"  data-src="img/icons/deluge.png"/>
+                        <img class="orbit-pos orbit10" data-src="img/icons/pidgin.png"/>
+                        <img class="orbit-pos orbit11" data-src="img/icons/libreoffice.png"/>
+                        <img class="orbit-pos orbit12" data-src="img/icons/7-zip.png"/>
+                        <img class="orbit-pos orbit13" data-src="img/icons/codeblocks.png"/>
+                        <img class="orbit-pos orbit14" data-src="img/icons/opensankor.png"/>
+                        <img class="orbit-pos orbit15" data-src="img/icons/thunderbird.png"/>
+                        <img class="orbit-pos orbit16" data-src="img/icons/notepad.png"/>
+                        <img class="orbit-pos orbit17" data-src="img/icons/nightingale.png"/>
+                        <img class="orbit-pos orbit18" data-src="img/icons/putty.png"/>
+                        <img class="orbit-pos orbit19" data-src="img/icons/windirstat.png"/>
+                        <img class="orbit-pos orbit20" data-src="img/icons/gimp.png"/>
+                        <img class="orbit-pos orbit21" data-src="img/icons/dia.png"/>
+                        <img class="orbit-pos orbit22" data-src="img/icons/celestia.png"/>
+                        <img class="orbit-pos orbit23" data-src="img/icons/calibre.png"/>
+                        <img class="orbit-pos orbit24" data-src="img/icons/freeplane.png"/>
+                        <img class="orbit-pos orbit25" data-src="img/icons/scribus.png"/>
+                        <img class="orbit-pos orbit26" data-src="img/icons/abiword.png"/>
+                        <img class="orbit-pos orbit27" data-src="img/icons/scratch.png"/>
+                        <img class="orbit-pos orbit28" data-src="img/icons/gajim.png"/>
+                        <img class="orbit-pos orbit29" data-src="img/icons/gnumeric.png"/>
+                        <img class="orbit-pos orbit30" data-src="img/icons/clamsentinel.png"/>
+                        <img class="orbit-pos orbit31" data-src="img/icons/avidemux.png"/>
+
+                        <span class="fragment">
+                            <p class="text-fr" style="font-size: 0.7em; width: 35%; top: 21%; left: 33%;">Un lieu pour les télécharger tous,</p>
+                            <p class="text-en" style="font-size: 0.7em; width: 35%; top: 21%; left: 33%;">One place to download them all,</p>
+                        <span>
+                        <span class="fragment">
+                            <p class="text-fr" style="font-size: 0.7em; width: 30%; top: 50%; left: 0%;">Une voie pour les diffuser.</p>
+                            <p class="text-en" style="font-size: 0.7em; width: 30%; top: 50%; left: 0%;">One way to spread them.</p>
+                        <span>
+                        <span class="fragment">
+                            <p class="text-fr" style="font-size: 0.7em; width: 30%; top: 50%; right: 2%;">Un pack pour les installer tous,</p>
+                            <p class="text-en" style="font-size: 0.7em; width: 30%; top: 50%; right: 2%;">One pack to install them all,</p>
+                        <span>
+                        <span class="fragment">
+                            <p class="text-fr" style="font-size: 0.7em; width: 100%; bottom: 2%; left: 0%;">Et dans la liberté les lier!</p>
+                            <p class="text-en" style="font-size: 0.7em; width: 100%; bottom: 2%; left: 0%;">And in the freedom bind them!</p>
+
+                            <img style="bottom: 0%; right: 0%; width: 10%;" data-src="img/sauron.png"/>
+                            <p class="text-fr" style="font-size: 0.45em; width: 25%; bottom: 17%; right: 8%; transform: rotate(1deg);">SI C'EST COMME CA, JE RENTRE CHEZ MOI...</p>
+                            <p class="text-en" style="font-size: 0.45em; width: 22%; bottom: 17%; right: 8%; transform: rotate(1deg);">IT'S UNFAIR, I'M RETURNING HOME...</p>
+                        <span>
+                    </span>
+                </section>
+                <section>
+                    <!-- Partie statique -->
+                    <img data-src="img/fond.png" class="img-fond"/>
+                    <button type="button" onclick="language_switcher();" class="lang-button">
+                        <p class="text-fr">(english version)</p>
+                        <p class="text-en">(version française)</p>
+                    </button>
+
+                    <!-- Partie dynamique -->
+
+                    <p class="text-fr" style="font-size: 0.7em; width: 50%; top: 5%; left: 2%;">Son utilisation est très simple!</p>
+                    <p class="text-en" style="font-size: 0.7em; width: 50%; top: 5%; left: 2%;">It's very easy to use!</p>
+
+                    <span class="fragment">
+                        <img src="img/logiciel_coche.gif" style="width: 15%; top: 14%; left: 12%;"/>
+                        <p class="text-fr" style="font-size: 0.6em; text-align: left; width: 64%; top: 20%; right: 2%;">Cochez les logiciels qui vous intéressent...</p>
+                        <p class="text-en" style="font-size: 0.6em; text-align: left; width: 64%; top: 20%; right: 2%;">Select softwares that interesting you...</p>
+                    </span>
+                    <span class="fragment">
+                        <img src="img/logiciel_liste.png" style="width: 18%; top: 33%; right: 10%;"/>
+                        <p class="text-fr" style="font-size: 0.6em; text-align: right; width: 64%; top: 38%; left: 2%;">Vous avez le récapitulatif qui s'affiche sur le côté.</p>
+                        <p class="text-en" style="font-size: 0.6em; text-align: right; width: 64%; top: 38%; left: 2%;">A summary is displayed on the right side.</p>
+                    </span>
+                    <span class="fragment">
+                        <img src="img/telecharger.png" style="width: 18%; top: 52%; left: 10%;"/>
+                        <p class="text-fr" style="font-size: 0.6em; text-align: left; width: 64%; top: 53%; right: 2%;">Cliquez sur "télécharger"...</p>
+                        <p class="text-en" style="font-size: 0.6em; text-align: left; width: 64%; top: 53%; right: 2%;">Click on "Download"...</p>
+                    </span>
+                    <span class="fragment">
+                        <img src="img/recup_lien.png" style="width: 25%; top: 64%; right: 5%; border: 1px solid lightgray !important;"/>
+                        <p class="text-fr" style="font-size: 0.6em; text-align: right; width: 64%; top: 66%; left: 2%;">...ou récupérez le lien pour partager votre liste de programmes avec d'autres!</p>
+                        <p class="text-en" style="font-size: 0.6em; text-align: right; width: 64%; top: 66%; left: 2%;">...or grab the link to share it with your friends!</p>
+                    </span>
+                    <span class="fragment">
+                        <p class="text-fr" style="font-size: 0.7em; width: 90%; bottom: 2%; left: 2%;">Reste à lancer l'installeur sur votre machine (Windows&reg;) et quelques minutes après, tout est prêt. <em>Et voila!</em></p>
+                        <p class="text-en" style="font-size: 0.7em; width: 90%; bottom: 2%; left: 2%;">Then you just have to launch the installer on your PC (Windows&reg;) and everything is ready in a couple of minutes. <em>Et voila!</em></p>
+                    </span>
+
+                    <span class="fragment" style="position: absolute; left: 0; height: 100%; width: 100%; background-color: white;">
+                        <p class="text-fr" style="font-size: 0.7em; width: 90%; top: 3%; left: 2%;">Rien ne vaut une démo&nbsp;: Allons sur <a href="https://framapack.org" target="_blank">framapack.org</a> ensemble!</p>
+                        <p class="text-en" style="font-size: 0.7em; width: 90%; top: 3%; left: 2%;">Let's practice together on <a href="https://framapack.org" target="_blank">framapack.org</a>!</p>
+
+                        <p class="text-fr" style="font-size: 0.5em; width: 20%; bottom: 83%; left: 40%; margin: 0;">C'est à vous là!</p>
+                        <p class="text-en" style="font-size: 0.5em; width: 20%; bottom: 83%; left: 40%; margin: 0;">Go ahead!</p>
+
+                        <p style="font-size: 0.6em; width: 2%; bottom: 83%; left: 38%; margin: 0;" class="swing">&darr;</p>
+                        <p style="font-size: 0.6em; width: 2%; bottom: 83%; left: 60%; margin: 0;" class="swing">&darr;</p>
+
+                        <iframe src="https://framapack.org/" style="position: absolute; height: 80%; width: 98%; bottom: 2%; left: 2%; border: 1px solid darkblue;"></iframe>
+
+                    </span>
+                </section>
+                <section>
+                    <!-- Partie statique -->
+                    <img data-src="img/fond_vert.png" class="img-fond"/>
+                    <button type="button" onclick="language_switcher();" class="lang-button">
+                        <p class="text-fr">(english version)</p>
+                        <p class="text-en">(version française)</p>
+                    </button>
+
+                    <!-- Partie dynamique -->
+                    <img data-src="img/presentateur_souriant_tete.png" style="top: 15%; left: 5%; height: 15%;"/>
+                    <img data-src="img/bulle1.png" style="top: 0%; left: 1%;"/>
+
+                    <p class="text-fr" style="font-size: 0.7em; width: 25%; top: 2%; left: 1%;">Témoignages...</p>
+                    <p class="text-en" style="font-size: 0.7em; width: 25%; top: 2%; left: 1%;">Testimonies...</p>
+
+                    <span class="fragment current-visible">
+                        <img data-src="img/bulle_pensee3.png" style="width: 58%; height: 17%; bottom: 20%; left: 1%;"/>
+                        <p class="text-fr" style="font-size: 0.6em; width: 42%; bottom: 9%; left: 4%;">J'ai divisé mon temps d'installation par 42 avec Framapack! Je sais que ce sont les dernières versions, et tout est open source. Ca m'a fait gagner un temps fou!</p>
+                        <p class="text-en" style="font-size: 0.6em; width: 42%; bottom: 14%; left: 4%;">I'm 42 times faster with Framapack! I know there are the last releases, and everything is open source. It's really a time -saver!</p>
+                        <img data-src="img/informaticien_heureux.png" style="bottom: 2%; right: 8%; width: 40%;"/>
+                    </span>
+
+                    <span class="fragment current-visible">
+                        <img data-src="img/bulle7.png" style="width: 35%; height: 40%; bottom: 38%; right: 6%;"/>
+                        <p class="text-fr" style="font-size: 0.6em; width: 35%; bottom: 60%; right: 4%;">Maintenant c'est beaucoup plus simple&nbsp;: Mon petit Théo m'envoie le lien par mel avec ce dont j'ai besoin, je sais que c'est propre, il n'y a pas de tupperware dedans...</p>
+                        <p class="text-en" style="font-size: 0.6em; width: 35%; bottom: 60%; right: 4%;">Now it's really easier: My little son e-mail me a link with only the softwares I need. Everything is clean, there is no tupperware...</p>
+
+                        <img data-src="img/bulle2.png" style="width: 30%; height: 17%; bottom: 35%; right: 1%;"/>
+                        <p class="text-fr" style="font-size: 0.6em; width: 25%; bottom: 42%; right: 2%;">de <strong>malware</strong> mamie!!</p>
+                        <p class="text-en" style="font-size: 0.6em; width: 25%; bottom: 42%; right: 2%;"><strong>Malware</strong>, not tupperware, granny!!</p>
+                        <img data-src="img/grand-mere.png" style="bottom: 2%; right: 40%; width: 20%;"/>
+                    </span>
+
+                    <span class="fragment current-visible">
+                        <img data-src="img/bulle6.png" style="width: 20%; bottom: 30%; left: 23%;"/>
+                        <p class="text-fr" style="font-size: 0.65em; width: 60%; bottom: 40%; left: 30%;">Je n'ai qu'à donner un fichier ou un lien à mes élèves, et ils ont tout l'environnement nécessaire pour faire leurs devoirs. En plus les logiciels sont libres&nbsp;: pas de licence coûteuse à payer pour leurs parents!</p>
+                        <p class="text-en" style="font-size: 0.65em; width: 60%; bottom: 40%; left: 30%;">I just have to give them a file or a link, and they have everything needed to do their homework. And it's free software, their parents have no costly licence to pay!</p>
+
+                        <p class="text-fr" style="font-size: 0.45em; width: 50%; bottom: 35%; left: 35%;">Et en passant, ça les sensibilise au logiciel libre!</p>
+                        <p class="text-en" style="font-size: 0.45em; width: 59%; bottom: 35%; left: 35%;">It's also a good way to teach them the advantages of free software!</p>
+
+                        <img data-src="img/bulle_groupe.png" style="width: 10%; height: 20%; bottom: 0%; right: 3%;"/>
+                        <p class="text-fr" style="font-size: 0.45em; width: 80%; bottom: 15%; left: 30%;">Kevin utilise Retouche Gimp, c'est super efficace!</p>
+                        <p class="text-en" style="font-size: 0.45em; width: 80%; bottom: 15%; left: 30%;">Kevin uses "Gimped", it's super effective!</p>
+
+                        <p class="text-fr" style="font-size: 0.45em; width: 80%; bottom: 10%; left: 30%;">Trop bien ton logiciel libre, on échange?!</p>
+                        <p class="text-en" style="font-size: 0.45em; width: 80%; bottom: 10%; left: 30%;">Your free software is awesome, can we trade it?!</p>
+
+                        <p class="text-fr" style="font-size: 0.45em; width: 80%; bottom: 5%; left: 30%;">Téléchargez-les tous!</p>
+                        <p class="text-en" style="font-size: 0.45em; width: 80%; bottom: 5%; left: 30%;">Gotta download 'em all!</p>
+                        <img data-src="img/professeur.png" style="height:45%; bottom: 0%; left: 0%;"/>
+
+                    </span>
+
+                </section>
+                <section>
+                    <!-- Partie statique -->
+                    <img data-src="img/fond_rose.png" class="img-fond"/>
+                    <button type="button" onclick="language_switcher();" class="lang-button">
+                        <p class="text-fr">(english version)</p>
+                        <p class="text-en">(version française)</p>
+                    </button>
+
+                    <!-- Partie dynamique -->
+                    <img data-src="img/presentateur_bras_gauche.png" style="bottom: 2%; left: 52%; height: 35%;"/>
+                    <img data-src="img/presentatrice_etonnee.png" style="bottom: 2%; right: 5%; height: 42%;"/>
+
+                    <img data-src="img/bulle1.png" style="width: 40%; top: 10%; right: 2%; transform: scaleX(-1);"/>
+                    <p class="text-fr" style="font-size: 0.65em; width: 50%; top: 8%; right: 2%;">Mon précieux... !! ahem...Alors oui, Pierre, vous m'avez presque convaincue!</p>
+                    <p class="text-en" style="font-size: 0.65em; width: 35%; top: 8%; right: 2%;">My precious... !! Ugh...Pierre, you almost convinced me!</p>
+
+                    <span class="fragment">
+                        <img data-src="img/bulle4.png" style="width: 25%; top: 29%; left: 45%; transform: scaleX(-1);"/>
+                        <p class="text-fr" style="font-size: 0.6em; width: 72%; top: 22%; left: 2%;">Le dernier argument qui finira de vous convaincre&nbsp;: <span style="font-size: 1.2em;">Son prix!</span> </br>
+                            Pour la modique somme de <span style="font-size: 1.2em;">0€</span> le pack est à vous! </br>
+                            N'attendez pas, c'est une offre illimitée dans le temps!
+                        </p>
+                        <p class="text-en" style="font-size: 0.6em; width: 72%; top: 22%; left: 2%;">This last argument will convince you for sure&nbsp;: <span style="font-size: 1.2em;">The price!</span> </br>
+                            For only <span style="font-size: 1.2em;">0€</span> this pack is yours! </br>
+                            Don't hesitate too long, this is an unlimited offer!
+                        </p>
+
+                        <p class="text-fr" style="font-size: 0.5em; width: 62%; top: 38%; left: 6%;">et si vous appréciez un logiciel en particulier, pensez à remercier son développeur avec un petit don sur leur site officiel! ;-)</p>
+                        <p class="text-en" style="font-size: 0.5em; width: 62%; top: 38%; left: 6%;">And if you appreciate particularly one software, please thanks the programmer by tipping him on his official website! ;-)</p>
+                    </span>
+                    <span class="fragment">
+                        <img data-src="img/bulle1.png" style="width: 25%; top: 36%; right: 2%; transform: scaleX(-1);"/>
+                        <p class="text-fr" style="font-size: 0.5em; width: 22%; top: 34%; right: 2%;">En effet, ce serait plutôt sympa!</p>
+                        <p class="text-en" style="font-size: 0.5em; width: 22%; top: 34%; right: 2%;">Indeed, it would be very nice!</p>
+                    </span>
+                    <span class="fragment">
+                        <img data-src="img/bulle6.png" style="width: 25%; top: 55%; left: 33%; transform: scaleX(-1) scaleY(-1);"/>
+                        <p class="text-fr" style="font-size: 0.6em; width: 48%; top: 60%; left: 1%;">Et pour ce prix, ce n'est pas un logiciel, ni deux, ni même trois, mais bien <strong style="font-size: 1.2em;">56</strong> logiciels qu'on vous offre à ce jour! Pour reprendre l'expression d'un collègue&nbsp;: </br><em>C'est-y pas beautiful ça?</em>*</p>
+                        <p class="text-en" style="font-size: 0.6em; width: 48%; top: 60%; left: 1%;">And we not offer you one software, neither two nor three, but <strong style="font-size: 1.2em;">56</strong> Softwares! Isn't it beautiful?</p>
+
+                        <p class="text-fr" style="font-size: 0.45em; width: 50%; bottom: -2%; left : -2%;">[*willy waller 2006 non fournis dans la promotion]</p>
+                    </span>
+                </section>
+                <section>
+                    <!-- Partie statique -->
+                    <img data-src="img/fond.png" class="img-fond"/>
+                    <button type="button" onclick="language_switcher();" class="lang-button">
+                        <p class="text-fr">(english version)</p>
+                        <p class="text-en">(version française)</p>
+                    </button>
+
+                    <!-- Partie dynamique -->
+                    <img data-src="img/presentateur_sourire_coin.png" style="top: 45%; left: 2%; height: 35%;"/>
+                    <img data-src="img/presentatrice_amusee.png" style="bottom: 15%; right: 2%; height: 42%;"/>
+
+                    <img data-src="img/bulle1.png" style="width: 40%; top: 7%; left: 1%;"/>
+                    <p class="text-fr" style="font-size: 0.6em; width: 75%; top: 0%; left: 2%;">En résumé&nbsp;: Une installation simple et rapide, la transparence du libre, et le choix dans les logiciels... </br>Qu'attendez-vous? Rendez-vous dès maintenant sur <a href="https://framapack.org" target="_blank">framapack.org</a>!!</p>
+                    <p class="text-en" style="font-size: 0.6em; width: 75%; top: 0%; left: 2%;">In short&nbsp;: Quick and easy install, free software transparency, and a selection of powerful softwares... </br>What are you waiting for? Go to <a href="https://framapack.org" target="_blank">framapack.org</a> immediately!!</p>
+
+                    <img data-src="img/bulle5bis.png" style="bottom: 55%; right: 10%; width: 25%; height: 15%;"/>
+                    <p class="text-fr" style="font-size: 0.6em; width: 32%; bottom: 63%; right: 4%;">Oh oui, clique vite, vite!</p>
+                    <p class="text-en" style="font-size: 0.6em; width: 32%; bottom: 63%; right: 4%;">Haven't you already downloaded? Quick!</p>
+
+
+                    <img class="orbit-pos orbit0"  data-src="img/icons/vlc.png"/>
+                    <img class="orbit-pos orbit1"  data-src="img/icons/blender.png"/>
+                    <img class="orbit-pos orbit2"  data-src="img/icons/launchy.png"/>
+                    <img class="orbit-pos orbit3"  data-src="img/icons/firefox.png"/>
+                    <img class="orbit-pos orbit4"  data-src="img/icons/inkscape.png"/>
+                    <img class="orbit-pos orbit5"  data-src="img/icons/filezilla.png"/>
+                    <img class="orbit-pos orbit6"  data-src="img/icons/pdfcreator.png"/>
+                    <img class="orbit-pos orbit7"  data-src="img/icons/komodo.png"/>
+                    <img class="orbit-pos orbit8"  data-src="img/icons/audacity.png"/>
+                    <img class="orbit-pos orbit9"  data-src="img/icons/deluge.png"/>
+                    <img class="orbit-pos orbit10" data-src="img/icons/pidgin.png"/>
+                    <img class="orbit-pos orbit11" data-src="img/icons/libreoffice.png"/>
+                    <img class="orbit-pos orbit12" data-src="img/icons/7-zip.png"/>
+                    <img class="orbit-pos orbit13" data-src="img/icons/codeblocks.png"/>
+                    <img class="orbit-pos orbit14" data-src="img/icons/opensankor.png"/>
+                    <img class="orbit-pos orbit15" data-src="img/icons/thunderbird.png"/>
+                    <img class="orbit-pos orbit16" data-src="img/icons/notepad.png"/>
+                    <img class="orbit-pos orbit17" data-src="img/icons/nightingale.png"/>
+                    <img class="orbit-pos orbit18" data-src="img/icons/putty.png"/>
+                    <img class="orbit-pos orbit19" data-src="img/icons/windirstat.png"/>
+                    <img class="orbit-pos orbit20" data-src="img/icons/gimp.png"/>
+                    <img class="orbit-pos orbit21" data-src="img/icons/dia.png"/>
+                    <img class="orbit-pos orbit22" data-src="img/icons/celestia.png"/>
+                    <img class="orbit-pos orbit23" data-src="img/icons/calibre.png"/>
+                    <img class="orbit-pos orbit24" data-src="img/icons/freeplane.png"/>
+                    <img class="orbit-pos orbit25" data-src="img/icons/scribus.png"/>
+                    <img class="orbit-pos orbit26" data-src="img/icons/abiword.png"/>
+                    <img class="orbit-pos orbit27" data-src="img/icons/scratch.png"/>
+                    <img class="orbit-pos orbit28" data-src="img/icons/gajim.png"/>
+                    <img class="orbit-pos orbit29" data-src="img/icons/gnumeric.png"/>
+                    <img class="orbit-pos orbit30" data-src="img/icons/clamsentinel.png"/>
+                    <img class="orbit-pos orbit31" data-src="img/icons/avidemux.png"/>
+
+
+                    <a href="https://framapack.org/" target="_blank" style="position: absolute; top: 54%; left: 23%;">
+                        <!--<h1 class="framapack" style="animation: fadeIn 0.5s linear 0.5s backwards, shake-big 2s infinite linear; font-size: 2.2em !important;">-->
+                        <h1 class="framapack" style="animation: fadeIn 0.5s linear 0.5s backwards; font-size: 2.2em !important;">
+                            <span class="frama">Frama</span><span class="pack">pack</span>
+                        </h1>
+                    </a>
+
+                </section>
+            </div>
+
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+        <script type="text/javascript">
+            var language;
+            var regex = /\/img\/[a-z]{2}\//;
+
+            language_switcher();
+
+
+            function language_switcher()
+            {
+                if (language === "fr"){
+                    language = "en";
+                }
+                else{
+                    language = "fr";
+                }
+
+                if (language === "fr"){
+                    visibility_change(document.getElementsByClassName("text-fr"), 'visible');
+                    visibility_change(document.getElementsByClassName("text-en"), 'hidden');
+                }
+                else if (language === "en"){
+                    visibility_change(document.getElementsByClassName("text-fr"), 'hidden');
+                    visibility_change(document.getElementsByClassName("text-en"), 'visible');
+                }
+            }
+
+            function visibility_change(list, parameter)
+            {
+                if (parameter === undefined) parameter = 'visible';
+                if (list !== undefined)
+                {
+                    for (var i = 0; i <= list.length-1; i++)
+                    {
+                        list[i].style.visibility=parameter;
+                    }
+                }
+            }
+
+            // Pour gérer l'effet de tampon au moment où le fragment s'affiche
+            Reveal.addEventListener( 'fragmentshown', function( event ) {
+                // event.fragment = the fragment DOM element
+                if (event.fragment.className.indexOf('fragment-tampon') != -1){
+                    var elements = event.fragment.getElementsByClassName("to-stamp");
+                    var i;
+                    for (i = 0; i < elements.length; i++) {
+                        elements[i].className = elements[i].className + " stamped";
+                    }
+                }
+
+            } );
+
+            //Hack specifique quand on a des fragments current-visible: le 1er ne s'affiche pas avec la slide (il faut une action...-_-')
+            //Pour y palier, ajouter la classe "display-fragment-first" au 1ER element à montrer (uniquement!), qui permettra d'ajouter "visible current-fragment" lorsqu'on arrive sur une slide
+            Reveal.addEventListener( 'slidechanged', function( event ) {
+                elements = Reveal.getCurrentSlide().getElementsByClassName("display-fragment-first");
+                elements[0].className = elements[0].className + " visible current-fragment";
+            } );
+        </script>
+
+        <script>
+
+            // Full list of configuration options available at:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+                overview: false,
+                //loop: true,
+                embedded: true,
+                //autoSlide: 5000,
+
+
+                transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+                // Optional reveal.js plugins
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true },
+                    { src: 'plugin/notes/notes.js', async: true }
+                ]
+            });
+
+        </script>
+
+    </body>
+</html>
